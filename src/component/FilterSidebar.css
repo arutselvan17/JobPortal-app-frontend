@@ -1,0 +1,127 @@
+/* ── FilterSidebar.css ───────────────────────────────────────────────────── */
+
+.filter-sidebar {
+  width: 260px;
+  min-width: 240px;
+  background: #ffffff;
+  padding: 16px 18px;
+  border-right: 1px solid #e5e7eb;
+  min-height: calc(100vh - 56px);
+  position: sticky;
+  top: 56px;
+  overflow-y: auto;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  flex-shrink: 0;
+}
+
+/* Header */
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.filter-header-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.filter-clear-all {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #A32D2D;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  transition: opacity 0.15s;
+}
+
+.filter-clear-all:hover { opacity: 0.75; }
+
+/* Sections */
+.filter-section {
+  margin-bottom: 18px;
+}
+
+.filter-section h4 {
+  font-size: 12px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 8px;
+}
+
+/* Inputs & selects */
+.filter-sidebar input,
+.filter-sidebar select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 7px;
+  border: 1.5px solid #e5e7eb;
+  outline: none;
+  font-size: 13px;
+  font-family: inherit;
+  color: #111827;
+  background: #fafafa;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.filter-sidebar input::placeholder { color: #9ca3af; }
+
+.filter-sidebar input:focus,
+.filter-sidebar select:focus {
+  border-color: #0D1B4B;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(13, 27, 75, 0.08);
+}
+
+/* Salary row */
+.salary-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.salary-row input { flex: 1; }
+
+.salary-sep {
+  font-size: 14px;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+/* Scrollbar */
+.filter-sidebar::-webkit-scrollbar { width: 4px; }
+.filter-sidebar::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 10px;
+}
+
+/* Responsive — slide-in on mobile */
+@media (max-width: 768px) {
+  .filter-sidebar {
+    position: fixed;
+    left: -100%;
+    top: 56px;
+    height: 100%;
+    z-index: 200;
+    transition: left 0.25s ease;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .filter-sidebar.open {
+    left: 0;
+  }
+}

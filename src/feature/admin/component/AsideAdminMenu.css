@@ -1,0 +1,80 @@
+.admin-aside {
+  position: fixed;
+  top: 65px;
+  left: 0;
+  width: 240px;
+  height: calc(100vh - 65px);
+  background: rgb(5, 12, 82);
+  padding: 20px 0;
+  color: white;
+  justify-content: center;
+}
+
+.admin-title {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.admin-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+.admin-menu li {
+  margin: 5px 0;
+  text-align: left;
+}
+
+.admin-menu a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  border-left: 4px solid transparent;
+  transition: 0.2s;
+  font-size: 15px;
+    
+  justify-content: center;
+  
+}
+
+
+.admin-logout {
+  margin-top: 20px;
+  padding: 12px 18px;
+  color: #f6f4f4;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  transition: 0.2s;
+  justify-content: center;
+}
+
+.admin-logout i {
+  font-size: 18px;
+}
+
+.admin-logout:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #c8c5c5;
+}
+
+.admin-menu a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-left: 4px solid white;
+}
+
+.admin-menu a.active {
+  background: rgba(255, 255, 255, 0.15);
+  border-left: 4px solid #00d4ff;
+  color: white;
+}
+

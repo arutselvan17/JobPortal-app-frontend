@@ -1,0 +1,219 @@
+/* ── JobCard.css ─────────────────────────────────────────────────────────── */
+
+.jc {
+  background: #ffffff;
+  border: 1.5px solid #e4e8f0;
+  border-radius: 14px;
+  padding: 18px 20px 16px;
+  width: 100%;
+  max-width: 420px;
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+
+.jc:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* top row */
+.jc__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.jc__date {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #6b7280;
+  background: #f3f4f6;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+.jc__save {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #374151;
+  background: transparent;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  padding: 4px 11px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.jc__save:hover {
+  background: #f9fafb;
+}
+
+.jc__save--saved {
+  color: #0d1b4b;
+  border-color: #0d1b4b;
+  background: #eef0f8;
+}
+
+/* company row */
+.jc__company-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.jc__logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  border: 1.5px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.jc__company-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.jc__title {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.jc__company {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  margin: 0;
+}
+
+.jc__location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* badges */
+.jc__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.jc__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 11px;
+  border-radius: 20px;
+  font-family: inherit;
+}
+
+.jc__badge--blue {
+  background: #e6f1fb;
+  color: #0c447c;
+}
+.jc__badge--pink {
+  background: #fbeaf0;
+  color: #72243e;
+}
+.jc__badge--green {
+  background: #eaf3de;
+  color: #27500a;
+}
+.jc__badge--amber {
+  background: #faeeda;
+  color: #633806;
+}
+
+/* skills */
+.jc__skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.jc__skill {
+  font-size: 12px;
+  font-weight: 500;
+  color: #374151;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: capitalize;
+}
+
+/* actions */
+.jc__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.jc__btn-apply {
+  flex: 1;
+  background: #0d1b4b;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.jc__btn-apply:hover:not(:disabled) {
+  background: #1a2f72;
+}
+.jc__btn-apply:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.jc__btn-details {
+  flex: 1;
+  background: #fff;
+  color: #111827;
+  border: 1.5px solid #d1d5db;
+  border-radius: 10px;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.jc__btn-details:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}

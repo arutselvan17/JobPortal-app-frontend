@@ -1,0 +1,57 @@
+.admin-layout {
+  display: flex;
+}
+
+/* main content area */
+.admin-content {
+  margin-left: 250px; /* same as sidebar width */
+  padding: 20px;
+  width: 100%;
+  background: #f5f6fa;
+  min-height: calc(100vh - 65px);
+}
+
+/* logout button */
+.logout-btn {
+  padding: 10px 16px;
+  background: crimson;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.2s;
+}
+
+.logout-btn:hover {
+  background: darkred;
+}
+
+.admin-content {
+  margin-left: 250px;
+  padding: 20px;
+  width: 100%;
+  background: #f5f6fa;
+  min-height: calc(100vh - 65px);
+
+}
+
+.admin-layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* sidebar + content row */
+.admin-layout {
+  display: flex;
+  flex: 1;
+}
+
+/* content area */
+.admin-content {
+  flex: 1;
+  padding: 20px;
+  background: #f5f7fb;
+  min-height: calc(100vh - 60px);
+}

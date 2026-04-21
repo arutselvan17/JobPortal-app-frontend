@@ -1,0 +1,29 @@
+.status-bar {
+  display: flex;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #f8fafc;
+}
+
+.status-item {
+  flex: 1;
+  max-width: 140px;        
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px 10px;       
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.status-item h3 {
+  margin: 0;
+  font-size: 16px;       
+  font-weight: 600;
+  color: #111827;
+}
+
+.status-item p {
+  margin: 2px 0 0;
+  font-size: 11px;         /* 🔥 smaller label */
+  color: #6b7280;
+}

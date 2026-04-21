@@ -1,0 +1,101 @@
+/* ================= SECTION ================= */
+.skill-section {
+  margin-top: 20px;
+}
+
+.skill-section h3 {
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ================= SKILL CONTAINER ================= */
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ================= SKILL CARD ================= */
+.skill-card {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 10px;
+
+  background: #f1f3f5;
+  border-radius: 20px;
+
+  font-size: 13px;
+}
+
+/* skill text */
+.skill-name {
+  font-weight: 500;
+  color: #333;
+}
+
+/* ================= ICON BUTTONS ================= */
+.skill-icon {
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+/* edit */
+.skill-icon.edit {
+  color: #0b07ff;
+}
+
+/* delete */
+.skill-icon.delete {
+  color: #dc3545;
+}
+
+/* save */
+.skill-icon.save {
+  color: #28a745;
+}
+
+/* cancel */
+.skill-icon.cancel {
+  color: #6c757d;
+}
+
+/* ================= INPUT (edit mode) ================= */
+.skill-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+  width: 80px;
+}
+
+/* ================= ADD ================= */
+.skill-add {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.skill-add input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.skill-add button {
+  padding: 6px 12px;
+  font-size: 13px;
+
+  background: rgb(5, 12, 82);
+  color: white;
+
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}

@@ -1,0 +1,274 @@
+body {
+  padding-top: 65px;
+}
+
+/* ================= NAVBAR ================= */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 65px;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 30px;
+  background-color: rgb(5, 12, 82);
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ================= LOGO ================= */
+#logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#logo img {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  object-fit: cover;
+
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+#logo p {
+  color: #e8e8e8;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ================= MENU ================= */
+#navmenu ul {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+  align-items: center;
+}
+
+#navmenu ul li a {
+  color: rgba(232, 232, 232, 0.85);
+  text-decoration: none;
+
+  padding: 7px 14px;
+  border-radius: 6px;
+
+  transition: 0.2s;
+}
+
+#navmenu ul li a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ================= HAMBURGER ================= */
+#hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#hamburger span {
+  width: 24px;
+  height: 2px;
+  background: white;
+}
+
+/* ================= ADMIN RIGHT ================= */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* ================= NOTIFICATION ICON ================= */
+.notification {
+  position: relative;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification img {
+  width: 28px;
+  height: 28px;
+  filter: brightness(1.1);
+}
+
+/* unread badge */
+.dot {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+
+  min-width: 18px;
+  height: 18px;
+
+  padding: 2px;
+
+  background: red;
+  color: white;
+
+  font-size: 11px;
+  font-weight: bold;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================= OVERLAY ================= */
+.notification-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  display: flex;
+  justify-content: flex-end;
+
+  z-index: 99999;
+
+}
+
+/* ================= NOTIFICATION PANEL ================= */
+.notification-panel {
+  width: 380px;
+  height: 100vh;
+
+  background: #ffffff;
+
+  box-shadow: -8px 0 25px rgba(0, 0, 0, 0.25);
+
+  overflow-Y: auto;
+
+  padding: 16px;
+
+  animation: slideIn 0.25s ease-in-out;
+
+  position: relative;
+}
+
+/* slide animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ================= PROFILE ================= */
+.profile img {
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+  object-fit: cover;
+
+  border: 2px solid white;
+
+  cursor: pointer;
+}
+
+/* ================= PROFILE OVERLAY ================= */
+.profile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 99999;
+}
+
+/* ================= PROFILE MODAL ================= */
+.profile-modal {
+  position: relative;
+
+  width: 420px;
+  max-height: 90vh;
+
+  background: #ffffff;
+
+  border-radius: 12px;
+  padding: 20px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+  overflow-y: auto;
+
+  animation: profileFadeIn 0.25s ease-in-out;
+}
+
+/* animation */
+@keyframes profileFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  #hamburger {
+    display: flex;
+  }
+
+  #navmenu {
+    display: none;
+    position: absolute;
+
+    top: 65px;
+    left: 0;
+    right: 0;
+
+    background: rgb(5, 12, 82);
+
+    padding: 16px;
+  }
+
+  #navmenu.open {
+    display: flex;
+  }
+
+  #navmenu ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-right {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,146 @@
+/* ===== INTRO SECTION ===== */
+#intro {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    padding: 40px;
+}
+
+#intro-img img {
+    width: 600px;
+    height: 550px;
+    border-radius: 20px;
+    margin-top: 4px;
+    box-shadow: 1px 1px 5px gray;
+}
+
+#intro-content {
+    max-width: 500px;
+}
+
+#intro-content h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+#intro-content p {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.intro-btn {
+    background-color: #050c52;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.intro-btn:hover {
+    background-color: #001f5c;
+}
+
+#portal-review {
+    width: 100%;
+    background-color: white;
+    padding: 60px 40px;
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.review {
+    max-width: 250px;
+}
+
+.review h1 {
+    font-size: 32px;
+    color: rgb(5, 12, 82);
+    margin-bottom: 10px;
+}
+
+.review h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.review p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+}
+
+
+
+/* ===== RECENT JOB SECTION ===== */
+#recent-job {
+  padding: 60px 80px;
+  background: #f8f9fc;
+}
+
+/* HEADER */
+.recent-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.recent-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.recent-header a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #4a6cf7;
+  transition: 0.3s;
+}
+
+.recent-header a:hover {
+  text-decoration: underline;
+}
+
+/* FLEX JOB LIST */
+.available-job-list {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap; /* important for responsiveness */
+}
+
+/* EACH CARD SIZE */
+.available-job-list > * {
+  flex: 1 1 300px; /* grow | shrink | base width */
+  max-width: 350px;
+}
+
+/* LOADING / EMPTY */
+.available-job-list p {
+  width: 100%;
+  text-align: center;
+  color: #777;
+}
+
+@media (max-width: 768px) {
+    #intro {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+    }
+
+    #intro-img img {
+        width: 100%;
+        height: auto;
+    }
+}

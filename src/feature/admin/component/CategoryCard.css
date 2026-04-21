@@ -1,0 +1,168 @@
+/* CONTAINER */
+.category-container {
+  padding: 20px;
+  background: #f5f7ff;
+  min-height: 100vh;
+}
+
+.category-container h2 {
+  margin-bottom: 12px;
+  color: #0a1853;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* 🔍 SEARCH INPUT */
+.search-input {
+  padding: 8px 10px;
+  margin-bottom: 15px;
+  width: 250px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #0a1853;
+  box-shadow: 0 0 0 2px rgba(10, 24, 83, 0.1);
+}
+
+/* FLEX GRID (NO STRETCH) */
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-start; /* change to center if needed */
+}
+
+/* CARD */
+.category-card {
+  flex: 0 0 200px; /* 🔥 prevents stretch */
+  max-width: 200px;
+
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 12px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border-left: 3px solid #0a1853;
+}
+
+.category-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* TITLE */
+.category-card h3 {
+  font-size: 14px;
+  color: #0a1853;
+  margin-bottom: 10px;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+/* BUTTON GROUP */
+.btn-group {
+  display: flex;
+  gap: 6px;
+}
+
+/* BUTTONS COMMON */
+.update-btn,
+.delete-btn {
+  flex: 1;
+  border: none;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* UPDATE BUTTON */
+.update-btn {
+  background: #0a1853;
+  color: #ffffff;
+}
+
+.update-btn:hover {
+  background: #122a6b;
+}
+
+/* DELETE BUTTON */
+.delete-btn {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
+/* ADD CATEGORY BOX */
+.add-category-container {
+  margin-bottom: 20px;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  max-width: 400px;
+}
+
+.add-category-container h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* FORM */
+.add-category-form {
+  display: flex;
+  gap: 10px;
+}
+
+/* INPUT */
+.add-category-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.add-category-input:focus {
+  outline: none;
+  border-color: #0a1853;
+  box-shadow: 0 0 0 2px rgba(10, 24, 83, 0.1);
+}
+
+/* ADD BUTTON */
+.add-category-btn {
+  padding: 8px 14px;
+  background-color: #0a1853;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.add-category-btn:hover {
+  background-color: #122a6b;
+}
+
+/* ERROR TEXT */
+.error-text {
+  margin-top: 6px;
+  color: #ef4444;
+  font-size: 12px;
+}

@@ -1,0 +1,108 @@
+/* ================= EMPLOYER SECTION ================= */
+.employer-section {
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+/* title */
+.employer-section h3 {
+  text-align: center;
+  margin-bottom: 18px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* ================= MESSAGES ================= */
+.success-msg {
+  color: green;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.error-msg {
+  color: red;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* ================= FORM LAYOUT ================= */
+.form-row {
+  display: flex;
+  gap: 20px;              /* space between left & right */
+  margin-bottom: 18px;    /* space between rows */
+}
+
+.form-field {
+  flex: 1;                /* equal width */
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* label */
+.form-field label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  min-height: 18px;       /* keeps alignment perfect */
+}
+
+/* input */
+.form-field input {
+  width: 100%;
+  padding: 10px;
+
+  border: 1px solid #ccc;
+  border-radius: 6px;
+
+  font-size: 14px;
+  outline: none;
+
+  transition: 0.2s;
+}
+
+/* focus effect */
+.form-field input:focus {
+  border-color: rgb(5, 12, 82);
+  box-shadow: 0 0 5px rgba(5, 12, 82, 0.3);
+}
+
+/* ================= BUTTON ================= */
+.primary-btn {
+  width: 100%;
+  padding: 12px;
+
+  background: rgb(5, 12, 82);
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.primary-btn:hover {
+  background: rgb(3, 8, 60);
+}
+
+.primary-btn:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+/* ================= FULL WIDTH FIELD ================= */
+.full-width {
+  width: 100%;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+  }
+}

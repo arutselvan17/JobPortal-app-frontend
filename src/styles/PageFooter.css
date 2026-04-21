@@ -1,0 +1,126 @@
+/* =============================================
+   footer.css — TalentBridge Footer
+   ============================================= */
+
+.footer {
+    background-color: #050c52;
+    padding: 0;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+/* ===== FOOTER CONTAINER ===== */
+.footer-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 50px 8%;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+/* ===== LOGO COLUMN ===== */
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 220px;
+}
+
+.footer-logo img {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-logo p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.65;
+    margin: 0;
+    text-align: left;
+}
+
+/* ===== FOOTER COLUMNS ===== */
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 130px;
+    text-align: left;
+}
+
+.footer-column h5 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.35);
+    margin: 0 0 4px;
+}
+
+.footer-column a {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.65);
+    text-decoration: none;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+    display: inline-block;
+}
+
+.footer-column a:hover {
+    color: white;
+    padding-left: 4px;
+}
+
+/* ===== FOOTER BOTTOM ===== */
+.footer-bottom {
+    text-align: center;
+    padding: 18px 8%;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.3);
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .footer-container {
+        gap: 30px;
+        padding: 40px 6%;
+    }
+    .footer-logo {
+        max-width: 100%;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+    }
+    .footer-logo p { font-size: 12px; }
+}
+
+@media (max-width: 480px) {
+    .footer-container {
+        flex-direction: column;
+        padding: 35px 6%;
+        gap: 28px;
+    }
+    .footer-logo {
+        flex-direction: row;
+        align-items: center;
+    }
+    .footer-column {
+        min-width: unset;
+        width: 100%;
+    }
+    .footer-bottom {
+        font-size: 11px;
+        padding: 16px 6%;
+    }
+}

@@ -1,0 +1,41 @@
+/* ================= PAGE ================= */
+.employer-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ================= LAYOUT ================= */
+.employer-layout {
+  display: flex;
+  flex: 1;
+}
+
+/* ================= SIDEBAR ================= */
+.employer-layout aside {
+  width: 240px;
+  background: #0b1a4a;
+  color: white;
+
+  position: fixed;
+  top: 65px;
+  left: 0;
+  bottom: 0;
+
+  padding: 20px 10px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+/* ================= CONTENT ================= */
+.employer-content {
+  flex: 1;
+  margin-left: 240px;
+
+  padding: 25px;
+  background: #f5f7fb;
+
+  min-height: calc(100vh - 65px);
+  box-sizing: border-box;
+}
+

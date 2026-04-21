@@ -1,0 +1,105 @@
+.company-container {
+  padding: 20px;
+  background: #f5f7ff;
+}
+
+.company-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 18px;
+  margin-bottom: 15px;
+
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+#hero h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #0a1853;
+  margin: 0;
+}
+
+#hero button {
+  background:  #0a1853;
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+#hero button:hover {
+  background-color: #06113f;
+}
+
+
+
+.company-table th,
+.company-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.company-table thead {
+  background: #0a1853;
+  color: white;
+}
+.add-btn {
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  background: #0a1853;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.inline-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.inline-form input {
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.inline-form button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.inline-form button[type="submit"] {
+  background: green;
+  color: white;
+}
+
+.inline-form button[type="button"] {
+  background: red;
+  color: white;
+}
+

@@ -1,0 +1,159 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* White background page */
+.page {
+  min-height: 100vh;
+  background: #f4f6fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 16px;
+  font-family: Arial, sans-serif;
+}
+
+/* White form card */
+.form-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 560px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Title */
+.form-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 6px;
+}
+
+/* Subtitle */
+.form-sub {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+/* Section labels like "PERSONAL INFO" */
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 14px;
+}
+
+/* Divider line */
+.divider {
+  border: none;
+  border-top: 1px solid #f0f0f0;
+  margin: 20px 0;
+}
+
+/* Each label + input group */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+/* Labels */
+.field label {
+  font-size: 13px;
+  color: #374151;
+}
+
+/* All inputs and selects */
+.field input,
+.field select {
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 14px;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  color: #111;
+  outline: none;
+}
+
+/* Blue border when clicked */
+.field input:focus,
+.field select:focus {
+  border-color: #050c52;
+  box-shadow: 0 0 0 3px rgba(5, 12, 82, 0.07);
+}
+
+/* Placeholder text color */
+.field input::placeholder {
+  color: #9ca3af;
+}
+
+/* Dropdown arrow */
+.field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23888' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+
+/* Error message */
+.err {
+  font-size: 12px;
+  color: #ef4444;
+  margin-top: 2px;
+}
+
+/* Two equal columns */
+.row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* Three equal columns */
+.row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+
+/* Register button */
+.register-btn {
+  width: 100%;
+  padding: 13px;
+  margin-top: 8px;
+  background: #050c52;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.register-btn:hover {
+  opacity: 0.85;
+}
+
+/* On small screens, stack columns */
+@media (max-width: 500px) {
+  .row-2,
+  .row-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
+}

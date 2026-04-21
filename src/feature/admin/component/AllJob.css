@@ -1,0 +1,103 @@
+.jobs-container {
+  padding: 20px;
+  background: #f5f7ff;
+  min-height: 100vh;
+}
+
+.jobs-container h2 {
+  margin-bottom: 15px;
+  color: #0a1853;
+}
+
+/* FILTERS */
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.filters input,
+.filters select {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.filters input:focus,
+.filters select:focus {
+  outline: none;
+  border-color: #0a1853;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+thead {
+  background: #0a1853;
+  color: white;
+}
+
+th {
+  padding: 12px;
+  text-align: left;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+  background: #f9f9f9;
+}
+
+/* STATUS */
+.status-active {
+  color: green;
+  font-weight: 600;
+}
+
+.status-closed {
+  color: red;
+  font-weight: 600;
+}
+
+/* BUTTONS */
+.action-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-size: 12px;
+}
+
+.reset-btn {
+  background: #6b7280;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.reset-btn:hover {
+  background: #4b5563;
+}
+
+.close-btn {
+  background: #ef4444;
+}
+
+.activate-btn {
+  background: #22c55e;
+}

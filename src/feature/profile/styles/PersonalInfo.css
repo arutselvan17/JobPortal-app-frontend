@@ -1,0 +1,71 @@
+/* ================= FORM ================= */
+.profile-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* title */
+.profile-modal h3 {
+  text-align: center;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* ================= 2-COLUMN GRID ================= */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* each field: label on top, input below */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-field label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #444;
+}
+
+/* input + select */
+.profile-modal input,
+.profile-modal select {
+  width: 100%;
+  padding: 9px 11px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: 0.2s;
+  box-sizing: border-box;
+}
+
+/* focus */
+.profile-modal input:focus,
+.profile-modal select:focus {
+  border-color: rgb(5, 12, 82);
+  box-shadow: 0 0 5px rgba(5, 12, 82, 0.3);
+  outline: none;
+}
+
+/* button */
+.profile-modal button[type="submit"] {
+  margin-top: 6px;
+  padding: 12px;
+  background: rgb(5, 12, 82);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  width: 100%;
+}
+
+.profile-modal button[type="submit"]:hover {
+  background: rgb(3, 8, 60);
+}
