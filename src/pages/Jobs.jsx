@@ -11,12 +11,17 @@ import { useNavigate } from "react-router-dom";
 
 export default function Jobs() {
 
-  const navigate = useNavigate()
-   const {isAuthendicated} = useSelector((state) => state.auth)
-    const [search , setSearch] = useState("")
+  const navigate = useNavigate();
+  const { isAuthendicated } = useSelector((state) => state.auth);
+
+  const [search, setSearch] = useState("");
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showToast, setShowToast] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const jobsPerPage = 6;
+
   const [filters, setFilters] = useState({
     location: "",
     category: "",
@@ -29,6 +34,7 @@ export default function Jobs() {
     datePosted: "",
   });
 
+  // Fetch jobs
   useEffect(() => {
     getJobs()
       .then((res) => {
@@ -41,15 +47,21 @@ export default function Jobs() {
       });
   }, []);
 
+  // Reset page when filter/search changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filters, search]);
+
   const onApply = () => {
-    if(!isAuthendicated){
-        setShowToast(true);
-        navigate("/login")
+    if (!isAuthendicated) {
+      setShowToast(true);
+      navigate("/login");
+    } else {
+      console.log("Applied");
     }
-    else 
-      console.log("Applied")
   };
-  // ── Client-side filtering ──────────────────────────────────────────────────
+
+  // Filtering
   const filteredJobs = useMemo(() => {
     return jobs.filter((job) => {
       const now = new Date();
@@ -94,15 +106,19 @@ export default function Jobs() {
 
       if (
         search &&
-        !job.title
-          .toLowerCase()
-          .includes(search.toLocaleLowerCase())
+        !job.title.toLowerCase().includes(search.toLowerCase())
       )
         return false;
 
       return true;
     });
-  }, [jobs, filters,search]);
+  }, [jobs, filters, search]);
+
+  // Pagination logic
+  const indexOfLastJob = currentPage * jobsPerPage;
+  const indexOfFirstJob = indexOfLastJob - jobsPerPage;
+  const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
+  const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
 
   return (
     <div>
@@ -114,21 +130,21 @@ export default function Jobs() {
         show={showToast}
         onClose={() => setShowToast(false)}
       />
-      {/* ===== HERO / HEADER ===== */}
+
+      {/* HEADER */}
       <div className="jobs-page-header">
         <div className="jobs-header-content">
           <h1>Find Your Dream Job</h1>
           <p>
-            Browse thousands of full-time, part-time and remote listings across
-            India
+            Browse thousands of full-time, part-time and remote listings across India
           </p>
 
           <div className="jobs-top-search">
             <input
               type="text"
               placeholder="Search by job title"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
             <button>Search</button>
           </div>
@@ -136,18 +152,21 @@ export default function Jobs() {
       </div>
 
       <div className="jobs-page">
-        {/* ── Sidebar ── */}
+
+        {/* SIDEBAR */}
         <FilterSidebar filters={filters} setFilters={setFilters} />
 
-        {/* ── Main content ── */}
+        {/* MAIN */}
         <main className="jobs-main">
-          {/* Result count */}
+
+          {/* RESULT BAR */}
           <div className="jobs-result-bar">
             <span className="jobs-result-count">
               {loading
                 ? "Loading…"
                 : `${filteredJobs.length} job${filteredJobs.length !== 1 ? "s" : ""} found`}
             </span>
+
             {Object.values(filters).some(Boolean) && (
               <button
                 className="jobs-clear-btn"
@@ -170,15 +189,50 @@ export default function Jobs() {
             )}
           </div>
 
-          {/* Grid */}
+          {/* JOB GRID */}
           {loading ? (
             <div className="jobs-empty">Loading jobs…</div>
-          ) : filteredJobs.length > 0 ? (
-            <div className="jobs-grid">
-              {filteredJobs.map((job) => (
-                <JobCard key={job.jobId} job={job} onApply={onApply} />
-              ))}
-            </div>
+          ) : currentJobs.length > 0 ? (
+            <>
+              <div className="jobs-grid">
+                {currentJobs.map((job) => (
+                  <JobCard key={job.jobId} job={job} onApply={onApply} />
+                ))}
+              </div>
+
+              {/* PAGINATION */}
+              {filteredJobs.length > jobsPerPage && (
+                <div className="pagination">
+                  
+                  <button
+                    onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                    disabled={currentPage === 1}
+                  >
+                    Prev
+                  </button>
+
+                  {Array.from({ length: totalPages }, (_, i) => (
+                    <button
+                      key={i}
+                      className={currentPage === i + 1 ? "active" : ""}
+                      onClick={() => setCurrentPage(i + 1)}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+
+                  <button
+                    onClick={() =>
+                      setCurrentPage((p) => Math.min(p + 1, totalPages))
+                    }
+                    disabled={currentPage === totalPages}
+                  >
+                    Next
+                  </button>
+
+                </div>
+              )}
+            </>
           ) : (
             <div className="jobs-empty">
               <p>No jobs match your filters.</p>
@@ -204,7 +258,8 @@ export default function Jobs() {
           )}
         </main>
       </div>
-      <Footer/>
+
+      <Footer />
     </div>
   );
 }
