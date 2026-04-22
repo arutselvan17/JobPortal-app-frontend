@@ -20,6 +20,7 @@ import MyJobs from "./feature/jobs/component/MyJobs.jsx";
 import PostJob from "./feature/jobs/component/PostJob.jsx";
 import Applications from "./feature/jobs/component/Applications.jsx";
 import Register from "./feature/auth/component/Register.jsx";
+import EmployeeSearchJob from "./feature/Employee/Component/EmployeeSearchJob.jsx";
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
             </ProtectedRoute>
           }
         >
+          <Route path="jobs" element={<EmployeeSearchJob/>}></Route>
 
         </Route>
 

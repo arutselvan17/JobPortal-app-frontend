@@ -1,0 +1,24 @@
+/* Employee.css */
+
+/* The whole page — column layout so Navbar is on top */
+.employee-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Below the navbar — sidebar and content sit side by side (row) */
+.employee-body {
+  display: flex;
+  flex-direction: row;   /* sidebar on LEFT, content on RIGHT */
+  flex: 1;
+}
+
+
+.employee-content {
+  flex: 1;               /* takes all remaining width */
+  margin-left: 240px;    /* same width as the sidebar */
+  background: #f5f7fb;
+  min-height: calc(100vh - 65px);  /* 65px = navbar height */
+  overflow-y: auto;
+}

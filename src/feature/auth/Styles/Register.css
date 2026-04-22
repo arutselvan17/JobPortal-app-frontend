@@ -146,6 +146,11 @@
   opacity: 0.85;
 }
 
+.api-error{
+  color: red;
+  font-size: 15px;
+}
+
 /* On small screens, stack columns */
 @media (max-width: 500px) {
   .row-2,

@@ -6,10 +6,14 @@ import Footer from "../../../component/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../slice/AuthSlice";
 import { useNavigate } from "react-router-dom";
+import ToastMsg from "../../../component/Toast";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [toastMessage,setToastMessage] = useState("")
+  const [toastType,setToastType] = useState("success")
+  const [toastModel,setToastModel] = useState(false)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -119,6 +123,8 @@ export default function Login() {
       </div>
 
       <Footer />
+
+      
     </div>
   );
 }

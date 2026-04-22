@@ -57,6 +57,14 @@ export default function Register() {
     }
   }, [success]);
 
+  useEffect(() =>{
+    if(error){
+      setToastMessage(error)
+      setToastType("danger")
+      setShowToast(true)
+    }
+  },[error])
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -148,7 +156,6 @@ export default function Register() {
   return (
     <div>
       <div className="page">
-        {/* Toast — shown at top-right corner */}
         <ToastMsg
           show={showToast}
           message={toastMessage}
@@ -162,8 +169,8 @@ export default function Register() {
           <h2 className="form-title">Create account</h2>
           <p className="form-sub">Fill in the details below to register</p>
 
-          {/* API error from backend */}
-          {error && <p className="api-error">{error}</p>}
+          {/* API error from backend
+          {error && <p className="api-error">{error}</p>} */}
 
           <p className="section-label">Personal Info</p>
 
