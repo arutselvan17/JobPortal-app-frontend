@@ -35,7 +35,7 @@ const AdminStatusSlice = createSlice({
     builder
       .addCase(fetchAdminStats.pending, (state) => {
         state.loading = true;
-        state.error = null; // important reset
+        state.error = null;
       })
       .addCase(fetchAdminStats.fulfilled, (state, action) => {
         state.loading = false;

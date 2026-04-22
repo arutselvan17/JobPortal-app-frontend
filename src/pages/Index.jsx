@@ -74,7 +74,7 @@ export default function Index() {
         </div>
       </div>
 
-      {/* ✅ RECENT JOBS SECTION */}
+      
       <div id="recent-job">
         <div className="recent-header">
           <h2>Recent Jobs</h2>
