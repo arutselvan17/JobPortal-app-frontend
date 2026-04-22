@@ -55,7 +55,9 @@ export default function Jobs() {
   const onApply = () => {
     if (!isAuthendicated) {
       setShowToast(true);
-      navigate("/login");
+      setTimeout(() =>{
+        navigate('/login');
+      },1000)
     } else {
       console.log("Applied");
     }

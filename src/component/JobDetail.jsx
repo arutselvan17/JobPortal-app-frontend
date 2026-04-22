@@ -19,8 +19,10 @@ import {
   HouseFill,
 } from "react-bootstrap-icons";
 
-import './JobDetail.css'
+import "./JobDetail.css";
 import Navbar from "./Navbar";
+import ToastMsg from "./Toast";
+import { useSelector } from "react-redux";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -112,28 +114,49 @@ export default function JobDetailPage({ job: jobProp, onApply }) {
   const [job, setJob] = useState(jobProp || null);
   const [saved, setSaved] = useState(false);
   const [loading, setLoading] = useState(!jobProp);
+  const [showModel, setShowModel] = useState(false);
+  const { isAuthendicated } = useSelector((state) => state.auth);
 
   useEffect(() => {
-  if (jobProp) return;
+    if (jobProp) return;
+    getSpecific(jobId)
+      .then((res) => {
+        setJob(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, [jobId, jobProp]);
 
-  getSpecific(jobId)
-    .then((res) => {
-      setJob(res.data);
-      setLoading(false);
-    })
-    .catch((err) => {
-      console.error(err);
-      setLoading(false);
-    });
-}, [jobId, jobProp]);
+  const handleApply = () => {
+    if (!isAuthendicated) {
+      setShowModel(true);
+      setTimeout(() => navigate("/login"),2000)
+    }
+    else console.log("Commig soon");
+  };
 
   if (loading) return <div className="jd__loading">Loading job details…</div>;
   if (!job) return <div className="jd__loading">Job not found.</div>;
 
   const {
-    title, companyname, companyLocation, location, postedDate, deadLine,
-    jobType, minSalary, maxSalary, payType, experienceReq,
-    description, category, status, skills = [],
+    title,
+    companyname,
+    companyLocation,
+    location,
+    postedDate,
+    deadLine,
+    jobType,
+    minSalary,
+    maxSalary,
+    payType,
+    experienceReq,
+    description,
+    category,
+    status,
+    skills = [],
   } = job;
 
   const isExpired = status === "EXPIRED" || new Date(deadLine) < new Date();
@@ -141,10 +164,16 @@ export default function JobDetailPage({ job: jobProp, onApply }) {
 
   return (
     <div className="jd">
+      <div>
+        <Navbar />
+      </div>
 
-    <div>
-        <Navbar/>
-    </div>
+      <ToastMsg
+        message="login to Apply for this job"
+        type="danger"
+        show={showModel}
+        onClose={() => setShowModel(false)}
+      />
       {/* ── Breadcrumb ── */}
       <nav className="jd__breadcrumb">
         <span className="jd__bc-item" onClick={() => navigate("/")}>
@@ -185,7 +214,7 @@ export default function JobDetailPage({ job: jobProp, onApply }) {
           <button
             className="jd__btn-apply"
             disabled={isExpired}
-            onClick={() => onApply?.(job)}
+            onClick={() => handleApply()}
           >
             <SendFill size={13} />
             {isExpired ? "Expired" : "Apply Now"}
@@ -200,12 +229,8 @@ export default function JobDetailPage({ job: jobProp, onApply }) {
         </div>
       </div>
 
-    
       <div className="jd__body">
-
-       
         <div className="jd__main">
-
           <SectionCard
             icon={<ClipboardFill size={15} color="#0C447C" />}
             iconBg="#E6F1FB"
@@ -221,7 +246,9 @@ export default function JobDetailPage({ job: jobProp, onApply }) {
           >
             <ul className="jd__bullet-list">
               <li>Fresher or {getExperience(experienceReq)} of experience</li>
-              <li>Strong knowledge in {skills.map((s) => s.skillName).join(", ")}</li>
+              <li>
+                Strong knowledge in {skills.map((s) => s.skillName).join(", ")}
+              </li>
               <li>Good problem-solving and communication skills</li>
               <li>Ability to work in a collaborative team environment</li>
             </ul>
@@ -234,16 +261,16 @@ export default function JobDetailPage({ job: jobProp, onApply }) {
           >
             <div className="jd__skills">
               {skills.map((s) => (
-                <span key={s.skillId} className="jd__skill">{s.skillName}</span>
+                <span key={s.skillId} className="jd__skill">
+                  {s.skillName}
+                </span>
               ))}
             </div>
           </SectionCard>
-
         </div>
 
         {/* Right: sidebar */}
         <aside className="jd__sidebar">
-
           <div className="jd__overview-card">
             <div className="jd__ov-header">
               <GridFill size={15} color="rgba(255,255,255,0.85)" />
@@ -300,7 +327,6 @@ export default function JobDetailPage({ job: jobProp, onApply }) {
             <p className="jd__posted-label">Posted on</p>
             <p className="jd__posted-date">{formatDate(postedDate)}</p>
           </div>
-
         </aside>
       </div>
     </div>
