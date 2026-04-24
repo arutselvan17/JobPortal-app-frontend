@@ -21,6 +21,7 @@ import PostJob from "./feature/jobs/component/PostJob.jsx";
 import Applications from "./feature/jobs/component/Applications.jsx";
 import Register from "./feature/auth/component/Register.jsx";
 import EmployeeSearchJob from "./feature/Employee/Component/EmployeeSearchJob.jsx";
+import EmployeeJobDetailPage from "./feature/Employee/Component/EmployeeJobDetailPage.jsx";
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
           }
         >
           <Route path="jobs" element={<EmployeeSearchJob/>}></Route>
+          <Route path="jobs/:jobId" element={<EmployeeJobDetailPage/>} />
 
         </Route>
 

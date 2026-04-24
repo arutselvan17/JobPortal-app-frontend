@@ -26,7 +26,7 @@ import { useSelector } from "react-redux";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-function formatSalary(min, max, payType) {
+function formatSalary(min, max, payType ) {
   if (payType === "ANNUALY") {
     return `${(min / 100000).toFixed(0)} – ${(max / 100000).toFixed(0)} LPA`;
   }
@@ -108,14 +108,19 @@ function SectionCard({ icon, iconBg, iconColor, title, children }) {
 }
 
 // ── JobDetailPage ─────────────────────────────────────────────────────────────
-export default function JobDetailPage({ job: jobProp, onApply }) {
+export default function JobDetailPage({
+  job: jobProp,
+  onApply,
+  backPath = "/jobs",
+  showNavbar = "true"
+}) {
   const { jobId } = useParams();
   const navigate = useNavigate();
   const [job, setJob] = useState(jobProp || null);
   const [saved, setSaved] = useState(false);
   const [loading, setLoading] = useState(!jobProp);
   const [showModel, setShowModel] = useState(false);
-  const { isAuthendicated } = useSelector((state) => state.auth);
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (jobProp) return;
@@ -130,12 +135,19 @@ export default function JobDetailPage({ job: jobProp, onApply }) {
       });
   }, [jobId, jobProp]);
 
-  const handleApply = () => {
-    if (!isAuthendicated) {
-      setShowModel(true);
-      setTimeout(() => navigate("/login"),2000)
+  const handleNavigate = () => {
+    if (!isAuthenticated) {
+      navigate("/jobs");
+    } else {
+      navigate("/employee/jobs");
     }
-    else console.log("Commig soon");
+  };
+
+  const handleApply = () => {
+    if (!isAuthenticated) {
+      setShowModel(true);
+      setTimeout(() => navigate("/login"), 2000);
+    } else console.log("Commig soon");
   };
 
   if (loading) return <div className="jd__loading">Loading job details…</div>;
@@ -165,7 +177,7 @@ export default function JobDetailPage({ job: jobProp, onApply }) {
   return (
     <div className="jd">
       <div>
-        <Navbar />
+        {showNavbar && <Navbar />}
       </div>
 
       <ToastMsg
@@ -176,12 +188,16 @@ export default function JobDetailPage({ job: jobProp, onApply }) {
       />
       {/* ── Breadcrumb ── */}
       <nav className="jd__breadcrumb">
-        <span className="jd__bc-item" onClick={() => navigate("/")}>
-          <HouseFill size={12} /> Home
-        </span>
-        <ChevronRight size={11} className="jd__bc-sep" />
-        <span className="jd__bc-item" onClick={() => navigate("/jobs")}>
-          Jobs
+        {!isAuthenticated  && (
+          <>
+            <span className="jd__bc-item" onClick={() => navigate("/")}>
+              <HouseFill size={12} /> Home
+            </span>
+            <ChevronRight size={11} className="jd__bc-sep" />
+          </>
+        )}
+        <span className="jd__bc-item" onClick={() => handleNavigate()}>
+          {isAuthenticated ? "Back" : "Jobs"}
         </span>
         <ChevronRight size={11} className="jd__bc-sep" />
         <span className="jd__bc-current">{title}</span>

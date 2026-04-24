@@ -1,6 +1,4 @@
-// EmployeeSearchJob.jsx
-// This page shows all jobs for the Employee.
-// It has a search bar, a filter sidebar on the left, and job cards on the right.
+
 
 import React, { useEffect, useState } from "react";
 import JobCard from "../../../component/Jobcard";
@@ -15,29 +13,16 @@ export default function EmployeeSearchJob() {
 
   const navigate  = useNavigate();
 
-  // Get isAuthenticated from Redux store (auth slice)
   const { isAuthenticated } = useSelector((state) => state.auth);
-
-  // --- STATE ---
-  // What the user typed in the search box
   const [search, setSearch] = useState("");
-
-  // All jobs loaded from the server
   const [jobs, setJobs] = useState([]);
-
-  // Are we still loading jobs from the server?
   const [loading, setLoading] = useState(true);
-
-  // Should we show the "please login" toast message?
   const [showToast, setShowToast] = useState(false);
 
-  // Which page of results are we on? (starts at page 1)
   const [currentPage, setCurrentPage] = useState(1);
-
-  // How many jobs to show per page
   const jobsPerPage = 6;
 
-  // All filter values (location, category, etc.)
+
   const [filters, setFilters] = useState({
     location:   "",
     category:   "",
@@ -50,31 +35,27 @@ export default function EmployeeSearchJob() {
     datePosted: "",
   });
 
-
-  // --- LOAD JOBS FROM SERVER ---
-  // useEffect runs once when this component first loads on screen
   useEffect(function () {
     getJobs()
       .then(function (res) {
-        setJobs(res.data);   // save the jobs list
-        setLoading(false);   // stop showing "loading..."
+        setJobs(res.data);   
+        setLoading(false);  
       })
       .catch(function (err) {
         console.error(err);
         setLoading(false);
       });
-  }, []); // empty [] means: run only once on first load
+  }, []); 
 
 
-  // --- RESET TO PAGE 1 when filters or search changes ---
+  
   useEffect(function () {
     setCurrentPage(1);
   }, [filters, search]);
 
+  
 
-  // --- FILTER THE JOBS ---
-  // This runs every time jobs, filters, or search changes
-  // It returns only the jobs that match all the filters
+  
   function getFilteredJobs() {
     const now = new Date();
 
@@ -129,42 +110,41 @@ export default function EmployeeSearchJob() {
         }
       }
 
-      // Filter by date posted (e.g. last 7 days)
+      
       if (filters.datePosted !== "") {
         const postedDate = new Date(job.postedDate);
-        const daysAgo = Math.floor((now - postedDate) / 86400000); // convert ms to days
+        const daysAgo = Math.floor((now - postedDate) / 86400000);
         if (daysAgo > Number(filters.datePosted)) {
           return false;
         }
       }
 
-      // Filter by search text (job title)
+      
       if (search) {
         if (!job.title.toLowerCase().includes(search.toLowerCase())) {
           return false;
         }
       }
 
-      // If all checks passed, include this job
+      
       return true;
     });
   }
 
-  // Call the filter function to get the filtered list
+  
   const filteredJobs = getFilteredJobs();
 
 
-  // --- PAGINATION ---
-  // Calculate which jobs to show on the current page
+  
   const indexOfFirstJob = (currentPage - 1) * jobsPerPage;
   const indexOfLastJob  = indexOfFirstJob + jobsPerPage;
   const currentJobs     = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
 
-  // How many pages total?
+ 
   const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
 
 
-  // --- APPLY BUTTON HANDLER ---
+  
   function handleApply() {
     if (!isAuthenticated) {
       // Not logged in — show toast then redirect to login
