@@ -29,7 +29,7 @@ export default function Login() {
       loginUser({
         email: email.trim(),
         password: password.trim(),
-      }),
+    }),   
     );
   };
 
@@ -39,8 +39,12 @@ export default function Login() {
       setPassword("");
 
       // console.log(isAuthenticated);
+      setToastModel(true)
+      setToastMessage("Login SuccessFull")
 
-      if (userRole === "ADMIN") {
+
+      setTimeout(() =>{
+        if (userRole === "ADMIN") {
         navigate("/admin/dashboard");
       }
       else if(userRole === "EMPLOYEE"){
@@ -48,6 +52,7 @@ export default function Login() {
       }
       else 
         navigate("/employer/my-jobs")
+      },2000)
     }
   }, [isAuthenticated, userRole, navigate]);
 
@@ -124,7 +129,11 @@ export default function Login() {
 
       <Footer />
 
-      
+      <ToastMsg
+      message={toastMessage}
+      type={toastType}
+      show={toastModel}
+      onClose={() => setToastModel(false)}/>
     </div>
   );
 }

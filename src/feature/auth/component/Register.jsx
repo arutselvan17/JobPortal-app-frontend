@@ -241,7 +241,7 @@ export default function Register() {
             </div>
             <div className="field">
               <label>Register as</label>
-              <select value={role} onChange={(e) => setRole(e.target.value)}>
+              <select value={role} onChange={(e) => setRole(e.target.value)}>          
                 <option value="EMPLOYER">Employer</option>
                 <option value="EMPLOYEE">Job Seeker</option>
               </select>
