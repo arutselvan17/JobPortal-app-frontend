@@ -1,14 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { login } from "../service/AuthService";
 import { jwtDecode } from "jwt-decode";
-
- //  INITIAL STATE 
+ 
 
 const token = localStorage.getItem("token");
 const refreshToken = localStorage.getItem("refreshToken");
 
 let email = null;
 let userRole = null;
+
+
+function isTokenExpired(token) {
+  if (!token) return true;
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    return payload.exp * 1000 < Date.now();
+  } catch {
+    return true;
+  }
+}
 
 if (token) {
   try {
@@ -21,7 +31,7 @@ if (token) {
 }
 
 const initialState = {
-  isAuthenticated: !!token,
+  isAuthenticated: !!token && !isTokenExpired(token),
   email: email,
   userRole: userRole,
   accessToken: token,
