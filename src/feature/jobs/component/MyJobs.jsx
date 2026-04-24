@@ -164,11 +164,9 @@ export default function MyJobs() {
                     </button>
                   )}
 
-                  {/* extend deadline — disabled if job is closed */}
                   <button
                     className="action-btn extend-btn"
                     onClick={() => openExtendModal(job.jobId)}
-                    disabled={job.status === "CLOSED"}
                   >
                     Extend
                   </button>

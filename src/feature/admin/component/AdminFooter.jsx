@@ -6,7 +6,7 @@ export default function AdminFooter() {
     <footer className="admin-footer">
       <div className="admin-footer-container">
 
-        {/* Left - System Info */}
+        {/*  System Info */}
         <div className="admin-footer-logo">
           <div>
             <h4>TalentBridge Admin</h4>
@@ -14,7 +14,7 @@ export default function AdminFooter() {
           </div>
         </div>
 
-        {/* Middle - Quick System Links */}
+        {/*  Quick System Links */}
         <div className="admin-footer-column">
           <h5>ADMIN PANEL</h5>
           <a href="/admin/dashboard">Dashboard</a>
@@ -23,7 +23,7 @@ export default function AdminFooter() {
           <a href="#">Jobs</a>
         </div>
 
-        {/* Right - System & Support */}
+        {/*  System & Support */}
         <div className="admin-footer-column right">
           <h5>SYSTEM</h5>
           <a href="#">Logs</a>
