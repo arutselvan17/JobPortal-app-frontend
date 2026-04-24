@@ -55,8 +55,8 @@ export const extendDeadline = createAsyncThunk(
   "employerJob/extendDeadline",
   async ({ jobId, deadLine }, { rejectWithValue }) => {
     try {
-      await extendDeadlineApi(jobId, deadLine);
-      return { jobId, deadLine };
+     const res =  await extendDeadlineApi(jobId, deadLine);
+      return res.data;
     } catch (err) {
       // console.log(err)
      return rejectWithValue(err.response?.data.message || err.data);
@@ -113,7 +113,13 @@ const EmployerJobSlice = createSlice({
       // EXTEND DEADLINE
       .addCase(extendDeadline.fulfilled, (state, action) => {
         const job = state.jobs.find((j) => j.jobId === action.payload.jobId);
-        if (job) job.deadLine = action.payload.deadLine;
+        if (job) {
+          // console.log(job);
+          console.log(action.payload)
+          job.deadLine = action.payload.deadLine;
+          job.status = action.payload.status;
+          // console.log(job )
+        }
       })
 
       // CREATE JOB

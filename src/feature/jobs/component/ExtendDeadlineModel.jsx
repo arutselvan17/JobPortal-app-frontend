@@ -53,12 +53,11 @@ export default function ExtendDeadlineModal({
           value={date}
           onChange={(e) => {
             setDate(e.target.value);
-            setError(""); // clear error when typing
+            setError(""); 
           }}
           min={new Date().toISOString().split("T")[0]}
         />
 
-        {/* ✅ ERROR MESSAGE */}
         {error && <p className="error-text">{error}</p>}
 
         <div className="modal-actions">
