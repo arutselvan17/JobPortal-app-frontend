@@ -6,7 +6,7 @@
 }
 
 /* HEADER BUTTON */
-.container > button {
+.page-header > button {
   background-color: #050c52;
   color: white;
   padding: 8px 14px;

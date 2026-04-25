@@ -1,0 +1,218 @@
+/* MyApplications.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.ma-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  padding: 28px;
+  background: #f4f6fb;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ma-title {
+  font-size: 38px;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 24px;
+}
+
+/* Table Card */
+.ma-table-wrap {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 18px;
+  overflow-x: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Table */
+.ma-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* Header */
+.ma-table thead tr {
+  background: linear-gradient(90deg, #001a72, #002fb3);
+}
+
+.ma-table th {
+  padding: 18px 14px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+/* Body */
+.ma-table td {
+  padding: 18px 14px;
+  font-size: 15px;
+  color: #1f2937;
+  text-align: center;
+  border-bottom: 1px solid #edf0f5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Hover */
+.ma-table tbody tr:hover {
+  background: #f8fbff;
+  transition: 0.25s ease;
+}
+
+/* Last row remove border */
+.ma-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Column Widths */
+.ma-table th:nth-child(1),
+.ma-table td:nth-child(1) {
+  width: 80px;
+}
+
+.ma-table th:nth-child(2),
+.ma-table td:nth-child(2) {
+  width: 38%;
+  text-align: left;
+  padding-left: 22px;
+}
+
+.ma-table th:nth-child(3),
+.ma-table td:nth-child(3) {
+  width: 22%;
+  text-align: left;
+}
+
+.ma-table th:nth-child(4),
+.ma-table td:nth-child(4) {
+  width: 20%;
+}
+
+.ma-table th:nth-child(5),
+.ma-table td:nth-child(5) {
+  width: 20%;
+}
+
+/* Status Badge */
+.ma-badge {
+  display: inline-block;
+  min-width: 120px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+/* Status Colors */
+.badge-hired {
+  background: #dff7e8;
+  color: #0c8a43;
+}
+
+.badge-rejected {
+  background: #fde6e6;
+  color: #e02424;
+}
+
+.badge-reviewed {
+  background: #e7efff;
+  color: #2563eb;
+}
+
+.badge-pending {
+  background: #fff4d8;
+  color: #b7791f;
+}
+
+.badge-applied {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.badge-default {
+  background: #ececec;
+  color: #555555;
+}
+
+/* Loading / Error / Empty */
+.ma-loading,
+.ma-error,
+.ma-empty {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.ma-error {
+  color: #dc2626;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .ma-wrapper {
+    padding: 20px;
+  }
+
+  .ma-title {
+    font-size: 30px;
+  }
+
+  .ma-table th,
+  .ma-table td {
+    padding: 16px 10px;
+    font-size: 14px;
+  }
+
+  .ma-badge {
+    min-width: 100px;
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ma-wrapper {
+    padding: 14px;
+  }
+
+  .ma-title {
+    font-size: 26px;
+  }
+
+  .ma-table {
+    min-width: 760px;
+  }
+
+  .ma-table-wrap {
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ma-title {
+    font-size: 22px;
+  }
+
+  .ma-loading,
+  .ma-error,
+  .ma-empty {
+    font-size: 14px;
+    padding: 18px;
+  }
+}

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getJobApplications, updateApplicationStatus } from "../../application/slice/EmployerApplicationSlice";
+import {
+  getJobApplications,
+  updateApplicationStatus,
+} from "../../application/slice/EmployerApplicationSlice";
 import "../styles/Application.css";
 
 export default function Applications() {
@@ -13,7 +16,7 @@ export default function Applications() {
   } = useSelector((state) => state.employerApplication);
 
   const [selectedApplication, setSelectedApplication] = useState(null);
-  const [updateTarget, setUpdateTarget] = useState(null); 
+  const [updateTarget, setUpdateTarget] = useState(null);
   const [newStatus, setNewStatus] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
@@ -64,7 +67,12 @@ export default function Applications() {
   const handleStatusUpdate = async () => {
     if (updateTarget && newStatus) {
       try {
-        await dispatch(updateApplicationStatus({ id: updateTarget.applicationId, status: newStatus })).unwrap();
+        await dispatch(
+          updateApplicationStatus({
+            id: updateTarget.applicationId,
+            status: newStatus,
+          }),
+        ).unwrap();
         setUpdateTarget(null);
         setNewStatus("");
       } catch (err) {
@@ -92,12 +100,13 @@ export default function Applications() {
 
   return (
     <div className="app-page">
-
       {/* HEADER */}
       <div className="page-header">
         <div>
           <h2>Applications</h2>
-          <p className="page-subtitle">Manage and review all job applications</p>
+          <p className="page-subtitle">
+            Manage and review all job applications
+          </p>
         </div>
         <div className="header-stat">
           <span className="stat-count">{filteredApplications.length}</span>
@@ -129,7 +138,10 @@ export default function Applications() {
         {(searchTerm || statusFilter) && (
           <button
             className="btn-clear"
-            onClick={() => { setSearchTerm(""); setStatusFilter(""); }}
+            onClick={() => {
+              setSearchTerm("");
+              setStatusFilter("");
+            }}
           >
             Clear
           </button>
@@ -169,14 +181,19 @@ export default function Applications() {
                       {app.status === "SHORLISTED" ? "SHORTLISTED" : app.status}
                     </span>
                   </td>
-                  <td>{new Date(app.appliedDate).toLocaleDateString("en-IN", {
-                    day: "2-digit", month: "short", year: "numeric"
-                  })}</td>
+                  <td>
+                    {new Date(app.appliedDate).toLocaleDateString("en-IN", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </td>
                   <td>
                     <div className="action-group">
                       <button
                         className="btn-review"
                         onClick={() => setSelectedApplication(app)}
+                        disabled={app.status?.toUpperCase() === "REJECTED"}
                         title="View profile"
                       >
                         Review
@@ -184,9 +201,10 @@ export default function Applications() {
                       <button
                         className="btn-update"
                         onClick={() => openUpdateModal(app)}
+                        disabled={app.status?.toUpperCase() === "REJECTED"}
                         title="Update status"
                       >
-                         Update
+                        Update
                       </button>
                     </div>
                   </td>
@@ -207,7 +225,12 @@ export default function Applications() {
       {selectedApplication && (
         <div className="overlay" onClick={() => setSelectedApplication(null)}>
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close-top" onClick={() => setSelectedApplication(null)}>✕</button>
+            <button
+              className="modal-close-top"
+              onClick={() => setSelectedApplication(null)}
+            >
+              ✕
+            </button>
 
             <div className="modal-profile-header">
               <div className="modal-avatar">
@@ -216,7 +239,9 @@ export default function Applications() {
               <div>
                 <h2>{selectedApplication.applicantName}</h2>
                 <span className={getStatusClass(selectedApplication.status)}>
-                  {selectedApplication.status === "SHORLISTED" ? "SHORTLISTED" : selectedApplication.status}
+                  {selectedApplication.status === "SHORLISTED"
+                    ? "SHORTLISTED"
+                    : selectedApplication.status}
                 </span>
               </div>
             </div>
@@ -227,18 +252,27 @@ export default function Applications() {
             <div className="modal-info-grid">
               <div className="modal-info-item">
                 <span className="modal-label">Application ID</span>
-                <span className="modal-value">#{selectedApplication.applicationId}</span>
+                <span className="modal-value">
+                  #{selectedApplication.applicationId}
+                </span>
               </div>
               <div className="modal-info-item">
                 <span className="modal-label">Job Title</span>
-                <span className="modal-value">{selectedApplication.jobTitle}</span>
+                <span className="modal-value">
+                  {selectedApplication.jobTitle}
+                </span>
               </div>
               <div className="modal-info-item">
                 <span className="modal-label">Applied Date</span>
                 <span className="modal-value">
-                  {new Date(selectedApplication.appliedDate).toLocaleDateString("en-IN", {
-                    day: "2-digit", month: "short", year: "numeric"
-                  })}
+                  {new Date(selectedApplication.appliedDate).toLocaleDateString(
+                    "en-IN",
+                    {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    },
+                  )}
                 </span>
               </div>
             </div>
@@ -249,7 +283,9 @@ export default function Applications() {
               {selectedApplication.skills?.length > 0 ? (
                 <div className="chip-wrap">
                   {selectedApplication.skills.map((s, i) => (
-                    <span key={i} className="chip">{s.skillName}</span>
+                    <span key={i} className="chip">
+                      {s.skillName}
+                    </span>
                   ))}
                 </div>
               ) : (
@@ -292,7 +328,6 @@ export default function Applications() {
                 <p className="empty-msg">No resume uploaded</p>
               )}
             </div>
-
           </div>
         </div>
       )}
@@ -300,8 +335,16 @@ export default function Applications() {
       {/* ── UPDATE STATUS MODAL ── */}
       {updateTarget && (
         <div className="overlay" onClick={() => setUpdateTarget(null)}>
-          <div className="modal-box modal-small" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close-top" onClick={() => setUpdateTarget(null)}>✕</button>
+          <div
+            className="modal-box modal-small"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="modal-close-top"
+              onClick={() => setUpdateTarget(null)}
+            >
+              ✕
+            </button>
             <h2>Update Status</h2>
             <p className="update-subtitle">
               Applicant: <strong>{updateTarget.applicantName}</strong>
@@ -333,7 +376,6 @@ export default function Applications() {
           </div>
         </div>
       )}
-
     </div>
   );
 }

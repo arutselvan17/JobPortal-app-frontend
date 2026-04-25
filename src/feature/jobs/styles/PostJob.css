@@ -2,6 +2,20 @@
   box-sizing: border-box;
 }
 
+.page-header {
+  display: flex;
+  align-items: center;            /* FIX: was flex-start — stat box now vertically centered with title */
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.page-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 4px;
+}
+
 .pj-wrap {
   padding: 1.5rem;
   max-width: 820px;

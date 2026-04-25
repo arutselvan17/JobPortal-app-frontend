@@ -1,7 +1,7 @@
 /* ===== PAGE LAYOUT ===== */
 /* Uses .app-page (not .page) to avoid conflicts with employer-content padding */
 .app-page {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
   box-sizing: border-box;
 }
 
@@ -15,13 +15,13 @@
   gap: 12px;
   padding: 60px 0;
   color: #6b7280;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
 }
 
 /* ===== HEADER ===== */
 .app-page .page-header {
   display: flex;
-  align-items: center;            /* FIX: was flex-start — stat box now vertically centered with title */
+  align-items: center; /* FIX: was flex-start — stat box now vertically centered with title */
   justify-content: space-between;
   margin-bottom: 24px;
 }
@@ -38,7 +38,15 @@
   color: #6b7280;
   margin: 0;
 }
-
+.btn-review:disabled,
+.btn-update:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: #ccc; 
+  color: #666;
+  border-color: #ccc;
+}
 .app-page .header-stat {
   display: flex;
   flex-direction: column;
@@ -48,7 +56,7 @@
   border-radius: 10px;
   padding: 10px 20px;
   min-width: 70px;
-  flex-shrink: 0;                 /* FIX: prevents stat box from squishing */
+  flex-shrink: 0; /* FIX: prevents stat box from squishing */
 }
 
 .app-page .stat-count {
@@ -77,7 +85,7 @@
 .app-page .filters input,
 .app-page .filters select {
   padding: 0 13px;
-  height: 40px;                   /* FIX: explicit height so input & select align on same baseline */
+  height: 40px; /* FIX: explicit height so input & select align on same baseline */
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 13.5px;
@@ -102,7 +110,7 @@
 }
 
 .app-page .btn-clear {
-  height: 40px;                   /* FIX: matches input/select height */
+  height: 40px; /* FIX: matches input/select height */
   padding: 0 14px;
   border: 1px solid #d1d5db;
   border-radius: 8px;
@@ -131,7 +139,7 @@
 .app-page .app-table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed;            /* FIX: stable column widths — stops columns shifting */
+  table-layout: fixed; /* FIX: stable column widths — stops columns shifting */
 }
 
 .app-page .app-table thead {
@@ -150,12 +158,24 @@
 }
 
 /* FIX: explicit column widths prevent layout jumping */
-.app-page .app-table thead th:nth-child(1) { width: 48px; }
-.app-page .app-table thead th:nth-child(2) { width: 22%; }
-.app-page .app-table thead th:nth-child(3) { width: 22%; }
-.app-page .app-table thead th:nth-child(4) { width: 14%; }
-.app-page .app-table thead th:nth-child(5) { width: 16%; }
-.app-page .app-table thead th:nth-child(6) { width: auto; }
+.app-page .app-table thead th:nth-child(1) {
+  width: 48px;
+}
+.app-page .app-table thead th:nth-child(2) {
+  width: 22%;
+}
+.app-page .app-table thead th:nth-child(3) {
+  width: 22%;
+}
+.app-page .app-table thead th:nth-child(4) {
+  width: 14%;
+}
+.app-page .app-table thead th:nth-child(5) {
+  width: 16%;
+}
+.app-page .app-table thead th:nth-child(6) {
+  width: auto;
+}
 
 .app-page .app-table tbody tr {
   border-bottom: 1px solid #f1f5f9;
@@ -215,7 +235,7 @@
 
 /* ===== BADGES ===== */
 .app-page .badge {
-  display: inline-flex;           /* FIX: was inline-block — caused vertical drift inside cells */
+  display: inline-flex; /* FIX: was inline-block — caused vertical drift inside cells */
   align-items: center;
   justify-content: center;
   padding: 4px 10px;
@@ -227,18 +247,33 @@
   white-space: nowrap;
 }
 
-.app-page .badge-applied    { background: #1e40af; color: #e0eaff; }
-.app-page .badge-reviewed   { background: #166534; color: #dcfce7; }
-.app-page .badge-shortlisted{ background: #92400e; color: #fef3c7; }
-.app-page .badge-rejected   { background: #991b1b; color: #fee2e2; }
-.app-page .badge-hired      { background: #4c1d95; color: #ede9fe; }
+.app-page .badge-applied {
+  background: #1e40af;
+  color: #e0eaff;
+}
+.app-page .badge-reviewed {
+  background: #166534;
+  color: #dcfce7;
+}
+.app-page .badge-shortlisted {
+  background: #92400e;
+  color: #fef3c7;
+}
+.app-page .badge-rejected {
+  background: #991b1b;
+  color: #fee2e2;
+}
+.app-page .badge-hired {
+  background: #4c1d95;
+  color: #ede9fe;
+}
 
 /* ===== ACTION BUTTONS ===== */
 .app-page .action-group {
   display: flex;
   gap: 7px;
   align-items: center;
-  flex-wrap: nowrap;              /* FIX: keeps Review + Update on one line */
+  flex-wrap: nowrap; /* FIX: keeps Review + Update on one line */
 }
 
 .app-page .btn-review {
@@ -296,7 +331,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ===== OVERLAY ===== */
@@ -332,17 +369,23 @@
 }
 
 @keyframes popIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* ===== MODAL PROFILE HEADER ===== */
 .modal-profile-header {
   display: flex;
-  align-items: center;            /* FIX: was flex-start — avatar & name now vertically centered */
+  align-items: center; /* FIX: was flex-start — avatar & name now vertically centered */
   gap: 16px;
   margin-bottom: 16px;
-  padding-right: 36px;            /* FIX: prevents name text overlapping the close ✕ button */
+  padding-right: 36px; /* FIX: prevents name text overlapping the close ✕ button */
 }
 
 .modal-profile-header > div {
@@ -369,7 +412,7 @@
   font-size: 18px;
   font-weight: 700;
   color: #111827;
-  margin: 0;                      /* FIX: removed bottom margin, gap on parent handles spacing */
+  margin: 0; /* FIX: removed bottom margin, gap on parent handles spacing */
 }
 
 .modal-divider {
@@ -428,7 +471,7 @@
 }
 
 .chip {
-  display: inline-flex;           /* FIX: inline-flex for consistent vertical centering */
+  display: inline-flex; /* FIX: inline-flex for consistent vertical centering */
   align-items: center;
   padding: 4px 12px;
   background: #f1f5f9;
@@ -447,14 +490,32 @@
   margin-bottom: 8px;
 }
 
-.edu-name  { font-weight: 600; color: #111827; font-size: 13.5px; margin: 0 0 2px; }
-.edu-school{ font-size: 13px; color: #374151; margin: 0 0 2px; }
-.edu-dates { font-size: 12px; color: #9ca3af; margin: 0; }
-.empty-msg { font-size: 13px; color: #9ca3af; font-style: italic; margin: 0; }
+.edu-name {
+  font-weight: 600;
+  color: #111827;
+  font-size: 13.5px;
+  margin: 0 0 2px;
+}
+.edu-school {
+  font-size: 13px;
+  color: #374151;
+  margin: 0 0 2px;
+}
+.edu-dates {
+  font-size: 12px;
+  color: #9ca3af;
+  margin: 0;
+}
+.empty-msg {
+  font-size: 13px;
+  color: #9ca3af;
+  font-style: italic;
+  margin: 0;
+}
 
 /* ===== RESUME BUTTON ===== */
 .btn-resume {
-  display: inline-flex;           /* FIX: inline-flex so icon + text align on same baseline */
+  display: inline-flex; /* FIX: inline-flex so icon + text align on same baseline */
   align-items: center;
   gap: 6px;
   padding: 8px 18px;
@@ -500,7 +561,7 @@
   outline: none;
   cursor: pointer;
   margin-bottom: 4px;
-  box-sizing: border-box;         /* FIX: prevents overflow inside modal */
+  box-sizing: border-box; /* FIX: prevents overflow inside modal */
 }
 
 .status-select:focus {
@@ -511,7 +572,7 @@
 .modal-actions {
   display: flex;
   justify-content: flex-end;
-  align-items: center;            /* FIX: vertically aligns Close & Save buttons */
+  align-items: center; /* FIX: vertically aligns Close & Save buttons */
   gap: 10px;
   margin-top: 20px;
 }
@@ -566,8 +627,10 @@
   align-items: center;
   justify-content: center;
   padding: 0;
-  transition: background 0.15s, color 0.15s;
-  z-index: 1;                     /* FIX: sits above scrollable modal content */
+  transition:
+    background 0.15s,
+    color 0.15s;
+  z-index: 1; /* FIX: sits above scrollable modal content */
 }
 
 .modal-close-top:hover {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SavedJobs from "../feature/jobs/component/SavedJob";
 import {
   ClockHistory,
   GeoAltFill,
@@ -11,6 +12,9 @@ import {
   Mortarboard,
 } from "react-bootstrap-icons";
 import "./JobCard.css";
+import { useDispatch, useSelector } from "react-redux";
+import { saveJob } from "../feature/jobs/slice/EmployeeJobSlice";
+import ToastMsg from "./Toast";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -66,19 +70,49 @@ function CompanyLogo({ name }) {
 export default function JobCard({ job, onApply }) {
   const [saved, setSaved] = useState(false);
   const navigate = useNavigate();
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  // const [toastMessage, setToastMessage] = useState("");
+  // const [toastModel, setToastModel] = useState(false);
+  // const [toastType, setToastType] = useState("Success");
+
+  const handleSave = async (jobId) => {
+    if (!isAuthenticated) {
+      console.log("login to save job");
+      return;
+    }
+
+    try {
+      setSaved(true);
+      await dispatch(saveJob(jobId)).unwrap();
+    } catch (error) {
+      // setToastMessage("job is alread saved")
+      // setToastType("danger")
+      // setToastModel(true)
+    }
+  };
 
   const {
-    jobId, title, companyname, location, postedDate, deadLine,
-    jobType, minSalary, maxSalary, payType, experienceReq,
-    skills = [], status,
+    jobId,
+    title,
+    companyname,
+    location,
+    postedDate,
+    deadLine,
+    jobType,
+    minSalary,
+    maxSalary,
+    payType,
+    experienceReq,
+    skills = [],
+    status,
   } = job;
 
   const isExpired = status === "EXPIRED" || new Date(deadLine) < new Date();
 
   return (
     <div className="jc">
-
-      {/* Top row */}
       <div className="jc__top">
         <span className="jc__date">
           <ClockHistory size={12} />
@@ -86,7 +120,7 @@ export default function JobCard({ job, onApply }) {
         </span>
         <button
           className={`jc__save ${saved ? "jc__save--saved" : ""}`}
-          onClick={() => setSaved((s) => !s)}
+          onClick={() => handleSave(jobId)}
         >
           {saved ? <BookmarkFill size={13} /> : <Bookmark size={13} />}
           {saved ? "Saved" : "Save"}
@@ -114,7 +148,8 @@ export default function JobCard({ job, onApply }) {
           <PersonWorkspace size={11} /> {formatJobType(jobType)}
         </span>
         <span className="jc__badge jc__badge--green">
-          <CurrencyRupee size={11} /> {formatSalary(minSalary, maxSalary, payType)}
+          <CurrencyRupee size={11} />{" "}
+          {formatSalary(minSalary, maxSalary, payType)}
         </span>
         <span className="jc__badge jc__badge--amber">
           <Mortarboard size={11} /> {getExperience(experienceReq)}
@@ -124,7 +159,9 @@ export default function JobCard({ job, onApply }) {
       {/* Skills */}
       <div className="jc__skills">
         {skills.slice(0, 4).map((s) => (
-          <span key={s.skillId} className="jc__skill">{s.skillName}</span>
+          <span key={s.skillId} className="jc__skill">
+            {s.skillName}
+          </span>
         ))}
         {skills.length > 4 && (
           <span className="jc__skill">+{skills.length - 4}</span>
@@ -148,6 +185,12 @@ export default function JobCard({ job, onApply }) {
         </button>
       </div>
 
+      {/* <ToastMsg
+      message={toastMessage}
+      type={toastType}
+      show={toastModel}
+      onClose={() => setToastModel(false)}
+      /> */}
     </div>
   );
 }

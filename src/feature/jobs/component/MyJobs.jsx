@@ -75,12 +75,14 @@ export default function MyJobs() {
 
       <EmployerStatus />
 
-      <h2>My Jobs</h2>
+      <div className="page-header">
+        <h2>My Jobs</h2>
 
       {/* post job button */}
       <button onClick={() => navigate("/employer/post-job")}>
         + Post Job
       </button>
+      </div>
 
       {/* filters */}
       <div className="filters">

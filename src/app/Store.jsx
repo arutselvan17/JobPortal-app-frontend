@@ -16,6 +16,9 @@ import EmployerSlice from '../feature/jobs/slice/EmployerJobSlice.jsx'
 import EmployerApplicationSlice from '../feature/application/slice/EmployerApplicationSlice.jsx'
 import EmployerStatusSlice from '../feature/employer/slice/EmployerStatusSlice.jsx'
 
+import EmployeeSavedJobSlice from '../feature/jobs/slice/EmployeeJobSlice.jsx'
+import EmployeeApplicationSlice from '../feature/application/slice/EmployeeApplicationSlice.jsx'
+
 import RegisterSlice from '../feature/auth/slice/RegisterSlice.jsx'
 
 export const Store = configureStore({
@@ -40,5 +43,8 @@ export const Store = configureStore({
         employerStatus:EmployerStatusSlice,
 
         register:RegisterSlice,
+
+        employeeJob:EmployeeSavedJobSlice,
+        employeeApplication:EmployeeApplicationSlice
     }
 })

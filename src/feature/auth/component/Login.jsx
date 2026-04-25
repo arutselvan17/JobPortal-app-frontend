@@ -48,7 +48,7 @@ export default function Login() {
         navigate("/admin/dashboard");
       }
       else if(userRole === "EMPLOYEE"){
-         navigate("/employee");
+         navigate("/employee/jobs");
       }
       else 
         navigate("/employer/my-jobs")

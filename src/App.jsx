@@ -22,6 +22,8 @@ import Applications from "./feature/jobs/component/Applications.jsx";
 import Register from "./feature/auth/component/Register.jsx";
 import EmployeeSearchJob from "./feature/Employee/Component/EmployeeSearchJob.jsx";
 import EmployeeJobDetailPage from "./feature/Employee/Component/EmployeeJobDetailPage.jsx";
+import SavedJobs from "./feature/jobs/component/SavedJob.jsx";
+import MyApplications from "./feature/application/component/MyApplication.jsx";
 
 function App() {
   return (
@@ -61,7 +63,9 @@ function App() {
           }
         >
           <Route path="jobs" element={<EmployeeSearchJob/>}></Route>
+          <Route path="saved-jobs" element={<SavedJobs/>}></Route>
           <Route path="jobs/:jobId" element={<EmployeeJobDetailPage/>} />
+          <Route path="my-applications" element={<MyApplications/>}></Route>
 
         </Route>
 

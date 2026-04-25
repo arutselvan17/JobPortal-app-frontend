@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getSpecific } from "../service/JobService";
+import { applyForJob } from "../feature/application/slice/EmployeeApplicationSlice";
+import ConfirmModal from "./ConfirmModal";
+import { clearError } from "../feature/application/slice/EmployeeApplicationSlice";
 import {
   GeoAltFill,
   BriefcaseFill,
@@ -22,11 +25,11 @@ import {
 import "./JobDetail.css";
 import Navbar from "./Navbar";
 import ToastMsg from "./Toast";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-function formatSalary(min, max, payType ) {
+function formatSalary(min, max, payType) {
   if (payType === "ANNUALY") {
     return `${(min / 100000).toFixed(0)} – ${(max / 100000).toFixed(0)} LPA`;
   }
@@ -112,15 +115,20 @@ export default function JobDetailPage({
   job: jobProp,
   onApply,
   backPath = "/jobs",
-  showNavbar = "true"
+  showNavbar = "true",
 }) {
   const { jobId } = useParams();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [job, setJob] = useState(jobProp || null);
   const [saved, setSaved] = useState(false);
   const [loading, setLoading] = useState(!jobProp);
   const [showModel, setShowModel] = useState(false);
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const [confrimModel, setConfrimModel] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState("success");
+  const { error } = useSelector((state) => state.employeeApplication);
 
   useEffect(() => {
     if (jobProp) return;
@@ -143,11 +151,35 @@ export default function JobDetailPage({
     }
   };
 
-  const handleApply = () => {
+  const handleApply = async () => {
     if (!isAuthenticated) {
+      setToastMessage("Login to Apply for Job");
+      setToastType("danger");
       setShowModel(true);
       setTimeout(() => navigate("/login"), 2000);
-    } else console.log("Commig soon");
+    } else {
+      try {
+        await dispatch(applyForJob(jobId)).unwrap(); 
+        setToastMessage("Job Applied Successfully");
+        setToastType("success");
+        setShowModel(true);
+      } catch (error) {
+        // console.log(error)
+        setToastMessage(error || "Already Applied or Failed");
+        setToastType("danger");
+        setShowModel(true);
+        dispatch(clearError());
+      }
+    }
+  };
+
+  const cancelApply = () => {
+    setConfrimModel(false);
+  };
+
+  const confrimApply = async () => {
+    await handleApply(); 
+    setConfrimModel(false);
   };
 
   if (loading) return <div className="jd__loading">Loading job details…</div>;
@@ -176,19 +208,17 @@ export default function JobDetailPage({
 
   return (
     <div className="jd">
-      <div>
-        {showNavbar && <Navbar />}
-      </div>
+      <div>{showNavbar && <Navbar />}</div>
 
       <ToastMsg
-        message="login to Apply for this job"
-        type="danger"
+        message={toastMessage}
+        type={toastType}
         show={showModel}
         onClose={() => setShowModel(false)}
       />
       {/* ── Breadcrumb ── */}
       <nav className="jd__breadcrumb">
-        {!isAuthenticated  && (
+        {!isAuthenticated && (
           <>
             <span className="jd__bc-item" onClick={() => navigate("/")}>
               <HouseFill size={12} /> Home
@@ -230,7 +260,7 @@ export default function JobDetailPage({
           <button
             className="jd__btn-apply"
             disabled={isExpired}
-            onClick={() => handleApply()}
+            onClick={() => setConfrimModel(true)}
           >
             <SendFill size={13} />
             {isExpired ? "Expired" : "Apply Now"}
@@ -261,7 +291,7 @@ export default function JobDetailPage({
             title="Requirements"
           >
             <ul className="jd__bullet-list">
-              <li>Fresher or {getExperience(experienceReq)} of experience</li>
+              <li>{getExperience(experienceReq)} of experience</li>
               <li>
                 Strong knowledge in {skills.map((s) => s.skillName).join(", ")}
               </li>
@@ -345,6 +375,16 @@ export default function JobDetailPage({
           </div>
         </aside>
       </div>
+
+      <ConfirmModal
+        show={confrimModel}
+        title="Job Apply"
+        message="Are you sure want to apply for the job?"
+        confirmText="Apply"
+        cancelText="Cancel"
+        onConfirm={() => confrimApply()}
+        onCancel={() => cancelApply()}
+      />
     </div>
   );
 }

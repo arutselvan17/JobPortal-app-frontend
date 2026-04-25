@@ -51,7 +51,7 @@ export default function PostJob() {
         type: "danger",
       });
     }
-  }, [error, dispatch]);
+  }, [error]);
 
   const addSkill = () => {
     if (!skillInput.trim()) return;
@@ -220,238 +220,252 @@ export default function PostJob() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="pj-wrap">
-      <div className="pj-header">
-        <div className="pj-title">Post a job</div>
-        <div className="pj-subtitle">
-          Fill in the details below to publish your listing
+    <div>
+      <div className="page-header">
+        <div>
+          <h2>Post Job</h2>
+          <p className="page-subtitle">
+            Post Your Requirements
+          </p>
         </div>
       </div>
+      <form onSubmit={handleSubmit} className="pj-wrap">
+        <div className="pj-header">
+          <div className="pj-title">Post a job</div>
+          <div className="pj-subtitle">
+            Fill in the details below to publish your listing
+          </div>
+        </div>
 
-      {/* Basic Info */}
-      <div className="pj-section-label">Basic info</div>
-      <div className="pj-grid-2">
+        {/* Basic Info */}
+        <div className="pj-section-label">Basic info</div>
+        <div className="pj-grid-2">
+          <div className="pj-field">
+            <label>Job title</label>
+            <input
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value);
+                setTitleError("");
+              }}
+              placeholder="e.g. Senior Frontend Developer"
+              className={titleError ? "input-error" : ""}
+            />
+            {titleError && <span className="pj-err">{titleError}</span>}
+          </div>
+
+          <div className="pj-field">
+            <label>Location</label>
+            <input
+              value={location}
+              onChange={(e) => {
+                setLocation(e.target.value);
+                setLocationError("");
+              }}
+              placeholder="e.g. Chennai / Remote"
+              className={locationError ? "input-error" : ""}
+            />
+            {locationError && <span className="pj-err">{locationError}</span>}
+          </div>
+        </div>
+
+        <div className="pj-grid-3">
+          <div className="pj-field">
+            <label>Job type</label>
+            <select
+              value={jobType}
+              onChange={(e) => {
+                setJobType(e.target.value);
+                setJobTypeError("");
+              }}
+              className={jobTypeError ? "input-error" : ""}
+            >
+              <option value="">Select type</option>
+              <option value="FULL_TIME">Full time</option>
+              <option value="PART_TIME">Part time</option>
+              <option value="INTERNSHIP">Internship</option>
+              <option value="CONTRACT">Contract</option>
+            </select>
+            {jobTypeError && <span className="pj-err">{jobTypeError}</span>}
+          </div>
+
+          <div className="pj-field">
+            <label>Experience (years)</label>
+            <input
+              type="number"
+              min="0"
+              value={experience}
+              onChange={(e) => {
+                setExperience(e.target.value);
+                setExperienceError("");
+              }}
+              placeholder="0"
+              className={experienceError ? "input-error" : ""}
+            />
+            {experienceError && (
+              <span className="pj-err">{experienceError}</span>
+            )}
+          </div>
+
+          <div className="pj-field">
+            <label>Category</label>
+            <select
+              value={category}
+              onChange={(e) => {
+                setCategory(e.target.value);
+                setCategoryError("");
+              }}
+              className={categoryError ? "input-error" : ""}
+            >
+              <option value="">Select category</option>
+              {categories?.map((cat) => (
+                <option key={cat.id} value={cat.name}>
+                  {cat.name}
+                </option>
+              ))}
+            </select>
+            {categoryError && <span className="pj-err">{categoryError}</span>}
+          </div>
+        </div>
+
+        {/* Compensation */}
+        <div className="pj-section-label">Compensation</div>
+        <div className="pj-grid-3">
+          <div className="pj-field">
+            <label>Min salary</label>
+            <input
+              type="number"
+              value={minSalary}
+              onChange={(e) => {
+                setMinSalary(e.target.value);
+                setMinSalaryError("");
+              }}
+              placeholder="e.g. 40000"
+              className={minSalaryError ? "input-error" : ""}
+            />
+            {minSalaryError && <span className="pj-err">{minSalaryError}</span>}
+          </div>
+
+          <div className="pj-field">
+            <label>Max salary</label>
+            <input
+              type="number"
+              value={maxSalary}
+              onChange={(e) => {
+                setMaxSalary(e.target.value);
+                setMaxSalaryError("");
+              }}
+              placeholder="e.g. 80000"
+              className={maxSalaryError ? "input-error" : ""}
+            />
+            {maxSalaryError && <span className="pj-err">{maxSalaryError}</span>}
+          </div>
+
+          <div className="pj-field">
+            <label>Pay type</label>
+            <select
+              value={payType}
+              onChange={(e) => {
+                setPayType(e.target.value);
+                setPayTypeError("");
+              }}
+              className={payTypeError ? "input-error" : ""}
+            >
+              <option value="">Select</option>
+              <option value="MONTHLY">Monthly</option>
+              <option value="ANNUALY">Yearly</option>
+            </select>
+            {payTypeError && <span className="pj-err">{payTypeError}</span>}
+          </div>
+        </div>
+
+        {/* Deadline */}
+        <div className="pj-section-label">Application deadline</div>
+        <div className="pj-deadline">
+          <div className="pj-field">
+            <input
+              type="date"
+              value={deadline}
+              onChange={(e) => {
+                setDeadline(e.target.value);
+                setDeadlineError("");
+              }}
+              className={deadlineError ? "input-error" : ""}
+            />
+            {deadlineError && <span className="pj-err">{deadlineError}</span>}
+          </div>
+        </div>
+
+        {/* Description */}
+        <div className="pj-section-label">Description</div>
         <div className="pj-field">
-          <label>Job title</label>
-          <input
-            value={title}
+          <textarea
+            value={description}
             onChange={(e) => {
-              setTitle(e.target.value);
-              setTitleError("");
+              setDescription(e.target.value);
+              setDescriptionError("");
             }}
-            placeholder="e.g. Senior Frontend Developer"
-            className={titleError ? "input-error" : ""}
+            placeholder="Describe the role, responsibilities, and what you're looking for..."
+            className={`pj-textarea ${descriptionError ? "input-error" : ""}`}
           />
-          {titleError && <span className="pj-err">{titleError}</span>}
+          {descriptionError && (
+            <span className="pj-err">{descriptionError}</span>
+          )}
         </div>
 
-        <div className="pj-field">
-          <label>Location</label>
+        {/* Skills */}
+        <div className="pj-section-label">Required skills</div>
+        <div className="pj-skill-row">
           <input
-            value={location}
-            onChange={(e) => {
-              setLocation(e.target.value);
-              setLocationError("");
+            value={skillInput}
+            onChange={(e) => setSkillInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                addSkill();
+              }
             }}
-            placeholder="e.g. Chennai / Remote"
-            className={locationError ? "input-error" : ""}
+            placeholder="e.g. React, Node.js, Python"
+            className={skillsError ? "input-error" : ""}
           />
-          {locationError && <span className="pj-err">{locationError}</span>}
+          <button type="button" className="pj-add-btn" onClick={addSkill}>
+            + Add
+          </button>
         </div>
-      </div>
+        {skillsError && <span className="pj-err">{skillsError}</span>}
 
-      <div className="pj-grid-3">
-        <div className="pj-field">
-          <label>Job type</label>
-          <select
-            value={jobType}
-            onChange={(e) => {
-              setJobType(e.target.value);
-              setJobTypeError("");
-            }}
-            className={jobTypeError ? "input-error" : ""}
-          >
-            <option value="">Select type</option>
-            <option value="FULL_TIME">Full time</option>
-            <option value="PART_TIME">Part time</option>
-            <option value="INTERNSHIP">Internship</option>
-            <option value="CONTRACT">Contract</option>
-          </select>
-          {jobTypeError && <span className="pj-err">{jobTypeError}</span>}
-        </div>
-
-        <div className="pj-field">
-          <label>Experience (years)</label>
-          <input
-            type="number"
-            min="0"
-            value={experience}
-            onChange={(e) => {
-              setExperience(e.target.value);
-              setExperienceError("");
-            }}
-            placeholder="0"
-            className={experienceError ? "input-error" : ""}
-          />
-          {experienceError && <span className="pj-err">{experienceError}</span>}
-        </div>
-
-        <div className="pj-field">
-          <label>Category</label>
-          <select
-            value={category}
-            onChange={(e) => {
-              setCategory(e.target.value);
-              setCategoryError("");
-            }}
-            className={categoryError ? "input-error" : ""}
-          >
-            <option value="">Select category</option>
-            {categories?.map((cat) => (
-              <option key={cat.id} value={cat.name}>
-                {cat.name}
-              </option>
+        {skills.length === 0 ? (
+          <p className="pj-no-skills">No skills added yet</p>
+        ) : (
+          <div className="pj-tags">
+            {skills.map((s, i) => (
+              <span key={i} className="pj-tag">
+                {s.skillName}
+                <button type="button" onClick={() => removeSkill(i)}>
+                  &#215;
+                </button>
+              </span>
             ))}
-          </select>
-          {categoryError && <span className="pj-err">{categoryError}</span>}
-        </div>
-      </div>
+          </div>
+        )}
 
-      {/* Compensation */}
-      <div className="pj-section-label">Compensation</div>
-      <div className="pj-grid-3">
-        <div className="pj-field">
-          <label>Min salary</label>
-          <input
-            type="number"
-            value={minSalary}
-            onChange={(e) => {
-              setMinSalary(e.target.value);
-              setMinSalaryError("");
-            }}
-            placeholder="e.g. 40000"
-            className={minSalaryError ? "input-error" : ""}
-          />
-          {minSalaryError && <span className="pj-err">{minSalaryError}</span>}
+        <hr className="pj-divider" />
+        <div className="pj-buttons">
+          <button type="button" className="pj-cancel" onClick={handleCancel}>
+            Cancel
+          </button>
+          <button type="submit" className="pj-post">
+            Post job
+          </button>
         </div>
 
-        <div className="pj-field">
-          <label>Max salary</label>
-          <input
-            type="number"
-            value={maxSalary}
-            onChange={(e) => {
-              setMaxSalary(e.target.value);
-              setMaxSalaryError("");
-            }}
-            placeholder="e.g. 80000"
-            className={maxSalaryError ? "input-error" : ""}
-          />
-          {maxSalaryError && <span className="pj-err">{maxSalaryError}</span>}
-        </div>
-
-        <div className="pj-field">
-          <label>Pay type</label>
-          <select
-            value={payType}
-            onChange={(e) => {
-              setPayType(e.target.value);
-              setPayTypeError("");
-            }}
-            className={payTypeError ? "input-error" : ""}
-          >
-            <option value="">Select</option>
-            <option value="MONTHLY">Monthly</option>
-            <option value="ANNUALY">Yearly</option>
-          </select>
-          {payTypeError && <span className="pj-err">{payTypeError}</span>}
-        </div>
-      </div>
-
-      {/* Deadline */}
-      <div className="pj-section-label">Application deadline</div>
-      <div className="pj-deadline">
-        <div className="pj-field">
-          <input
-            type="date"
-            value={deadline}
-            onChange={(e) => {
-              setDeadline(e.target.value);
-              setDeadlineError("");
-            }}
-            className={deadlineError ? "input-error" : ""}
-          />
-          {deadlineError && <span className="pj-err">{deadlineError}</span>}
-        </div>
-      </div>
-
-      {/* Description */}
-      <div className="pj-section-label">Description</div>
-      <div className="pj-field">
-        <textarea
-          value={description}
-          onChange={(e) => {
-            setDescription(e.target.value);
-            setDescriptionError("");
-          }}
-          placeholder="Describe the role, responsibilities, and what you're looking for..."
-          className={`pj-textarea ${descriptionError ? "input-error" : ""}`}
+        <ToastMsg
+          show={toast.show}
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast({ ...toast, show: false })}
         />
-        {descriptionError && <span className="pj-err">{descriptionError}</span>}
-      </div>
-
-      {/* Skills */}
-      <div className="pj-section-label">Required skills</div>
-      <div className="pj-skill-row">
-        <input
-          value={skillInput}
-          onChange={(e) => setSkillInput(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              addSkill();
-            }
-          }}
-          placeholder="e.g. React, Node.js, Python"
-          className={skillsError ? "input-error" : ""}
-        />
-        <button type="button" className="pj-add-btn" onClick={addSkill}>
-          + Add
-        </button>
-      </div>
-      {skillsError && <span className="pj-err">{skillsError}</span>}
-
-      {skills.length === 0 ? (
-        <p className="pj-no-skills">No skills added yet</p>
-      ) : (
-        <div className="pj-tags">
-          {skills.map((s, i) => (
-            <span key={i} className="pj-tag">
-              {s.skillName}
-              <button type="button" onClick={() => removeSkill(i)}>
-                &#215;
-              </button>
-            </span>
-          ))}
-        </div>
-      )}
-
-      <hr className="pj-divider" />
-      <div className="pj-buttons">
-        <button type="button" className="pj-cancel" onClick={handleCancel}>
-          Cancel
-        </button>
-        <button type="submit" className="pj-post">
-          Post job
-        </button>
-      </div>
-
-      <ToastMsg
-        show={toast.show}
-        message={toast.message}
-        type={toast.type}
-        onClose={() => setToast({ ...toast, show: false })}
-      />
-    </form>
+      </form>
+    </div>
   );
 }

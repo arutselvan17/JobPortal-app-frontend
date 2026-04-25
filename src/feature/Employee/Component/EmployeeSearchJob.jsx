@@ -5,19 +5,27 @@ import JobCard from "../../../component/Jobcard";
 import FilterSidebar from "../../../component/FilterSidebar";
 import { getJobs } from "../../../service/JobService";
 import ToastMsg from "../../../component/Toast";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "../styles/EmployeeSearchJob.css";
+import { clearError } from "../../jobs/slice/EmployeeJobSlice";
 
 export default function EmployeeSearchJob() {
 
   const navigate  = useNavigate();
-
+  const dispatch = useDispatch()
   const { isAuthenticated } = useSelector((state) => state.auth);
   const [search, setSearch] = useState("");
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showToast, setShowToast] = useState(false);
+
+  const {error} = useSelector((state) => state.employeeJob);
+
+  const [toastMessage , setToastMessage] = useState("")
+  const [toastModel,setToastModel] = useState(false)
+  const [toastType , setToastType] = useState("success")
+
 
   const [currentPage, setCurrentPage] = useState(1);
   const jobsPerPage = 6;
@@ -52,6 +60,16 @@ export default function EmployeeSearchJob() {
   useEffect(function () {
     setCurrentPage(1);
   }, [filters, search]);
+
+  useEffect(() => {
+  if (error) {
+    setToastMessage("Job is Already Saved");
+    setToastType("danger");
+    setToastModel(true);
+
+    dispatch(clearError())
+  }
+}, [error]);
 
   
 
@@ -145,15 +163,18 @@ export default function EmployeeSearchJob() {
 
 
   
-  function handleApply() {
+  function handleApply(jobId) {
     if (!isAuthenticated) {
       // Not logged in — show toast then redirect to login
-      setShowToast(true);
+      setToastMessage("Login Required")
+      setToastType("danger")
+      setToastModel(true)
       setTimeout(function () {
         navigate("/login");
       }, 1000);
     } else {
-      console.log("Applied!");
+      navigate(`/jobs/${jobId}`)
+
       // TODO: call your apply API here
     }
   }
@@ -179,10 +200,10 @@ export default function EmployeeSearchJob() {
 
       {/* Toast message: shown when user tries to apply without logging in */}
       <ToastMsg
-        message="Please login to apply for jobs"
-        type="danger"
-        show={showToast}
-        onClose={function () { setShowToast(false); }}
+        message={toastMessage}
+        type={toastType}
+        show={toastModel}
+        onClose={function () { setToastModel(false) }}
       />
 
       {/* SEARCH BAR */}
@@ -227,7 +248,7 @@ export default function EmployeeSearchJob() {
                   <JobCard
                     key={job.jobId}
                     job={job}
-                    onApply={handleApply}
+                    onApply={() => handleApply(job.jobId)}
                   />
                 );
               })}

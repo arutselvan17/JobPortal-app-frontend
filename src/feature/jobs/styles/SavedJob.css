@@ -1,0 +1,117 @@
+/* SavedJob.css */
+
+.saved-page {
+  padding: 32px;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+/* Header */
+.saved-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.saved-header h2 {
+  font-size: 30px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.saved-header p {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.saved-count {
+  
+  color: #000000;
+  padding: 10px 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-size: 14px;
+  font-weight: 600;
+  background: #ffffff;
+}
+
+/* Search */
+.saved-search-wrap {
+  margin-bottom: 28px;
+}
+
+.saved-search {
+  width: 100%;
+  max-width: 420px;
+  padding: 14px 18px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  outline: none;
+  font-size: 15px;
+  background: white;
+  transition: 0.3s;
+}
+
+.saved-search:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Status */
+.saved-status,
+.saved-error {
+  margin: 20px 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.saved-status {
+  color: #4b5563;
+}
+
+.saved-error {
+  color: #dc2626;
+}
+
+/* Flex Card Layout */
+.saved-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-top: 10px;
+}
+
+/* Each Card */
+.saved-grid > * {
+  flex: 1 1 320px;
+  max-width: 400px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .saved-page {
+    padding: 20px;
+  }
+
+  .saved-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .saved-header h2 {
+    font-size: 24px;
+  }
+
+  .saved-search {
+    max-width: 100%;
+  }
+
+  .saved-grid > * {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}

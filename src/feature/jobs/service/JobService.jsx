@@ -28,3 +28,10 @@ export const setSkillApi = (jobId, skills) => {
   return axiosInstance.put(`/jobs/${jobId}/set-skill`, skills);
 };
 
+export const getSavedJob = () => {
+  return axiosInstance.get("/jobs/saved");
+}
+
+export const setSaved = (jobId) => {
+  return axiosInstance.post(`/jobs/${jobId}/saved`)
+}

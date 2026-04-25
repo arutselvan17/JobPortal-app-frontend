@@ -20,7 +20,7 @@ export default function Jobs() {
   const [showToast, setShowToast] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const jobsPerPage = 6;
+  const jobsPerPage = 8;
 
   const [filters, setFilters] = useState({
     location: "",
@@ -52,14 +52,14 @@ export default function Jobs() {
     setCurrentPage(1);
   }, [filters, search]);
 
-  const onApply = () => {
+  const onApply = (jobId) => {
     if (!isAuthendicated) {
       setShowToast(true);
       setTimeout(() =>{
         navigate('/login');
       },1000)
     } else {
-      console.log("Applied");
+      navigate(`jobs/${jobId}`)
     }
   };
 
@@ -198,7 +198,7 @@ export default function Jobs() {
             <>
               <div className="jobs-grid">
                 {currentJobs.map((job) => (
-                  <JobCard key={job.jobId} job={job} onApply={onApply} />
+                  <JobCard key={job.jobId} job={job} onApply={onApply(job.jobId)} />
                 ))}
               </div>
 
