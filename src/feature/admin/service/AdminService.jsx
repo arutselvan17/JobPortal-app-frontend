@@ -1,7 +1,7 @@
 import axiosInstance from "../../../service/AxiosInstance";
 
-export const getAllUsers = () => {
-  return axiosInstance.get("/admin/users");
+export const getAllUsers = (page = 0,size = 10) => {
+  return axiosInstance.get(`/admin/users?page=${page}&size=${size}`);
 };
 
 export const getAllCompany = () => {

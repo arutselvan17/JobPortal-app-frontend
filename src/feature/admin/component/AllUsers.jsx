@@ -5,18 +5,27 @@ import "../styles/AllUsers.css";
 
 export default function AllUsers() {
   const dispatch = useDispatch();
-  const { users, loading } = useSelector((state) => state.alluser);
+
+  const { users, loading, totalPages, currentPage } = useSelector(
+    (state) => state.alluser,
+  );
 
   const [emailFilter, setEmailFilter] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
 
+  // First Load
   useEffect(() => {
-    dispatch(fetchAllUsers());
+    dispatch(fetchAllUsers({ page: 0, size: 10 }));
   }, [dispatch]);
 
-  // FILTER LOGIC
+  // Load page function
+  const loadPage = (pageNo) => {
+    dispatch(fetchAllUsers({ page: pageNo, size: 10 }));
+  };
+
+  // Filter Logic
   const filteredUsers = users?.filter((user) => {
     return (
       user.email?.toLowerCase().includes(emailFilter.toLowerCase()) &&
@@ -30,10 +39,8 @@ export default function AllUsers() {
 
   return (
     <div>
-
       {/* FILTERS */}
       <div className="filters">
-
         <input
           type="text"
           placeholder="Search email"
@@ -66,7 +73,6 @@ export default function AllUsers() {
           value={locationFilter}
           onChange={(e) => setLocationFilter(e.target.value)}
         />
-
       </div>
 
       {/* TABLE */}
@@ -91,9 +97,7 @@ export default function AllUsers() {
                   <td>{user.email}</td>
 
                   <td>
-                    <span className={`badge-${user.role}`}>
-                      {user.role}
-                    </span>
+                    <span className={`badge-${user.role}`}>{user.role}</span>
                   </td>
 
                   <td>
@@ -115,7 +119,7 @@ export default function AllUsers() {
                             changeUserStatus({
                               userId: user.userId,
                               status: "BLOCKED",
-                            })
+                            }),
                           )
                         }
                       >
@@ -129,7 +133,7 @@ export default function AllUsers() {
                             changeUserStatus({
                               userId: user.userId,
                               status: "ACTIVE",
-                            })
+                            }),
                           )
                         }
                       >
@@ -150,6 +154,25 @@ export default function AllUsers() {
             )}
           </tbody>
         </table>
+      </div>
+
+      
+      <div className="pagination">
+        <button
+          disabled={currentPage === 0}
+          onClick={() => loadPage(currentPage - 1)}
+        >
+          Prev
+        </button>
+
+        
+
+        <button
+          disabled={currentPage === totalPages - 1}
+          onClick={() => loadPage(currentPage + 1)}
+        >
+          Next
+        </button>
       </div>
     </div>
   );

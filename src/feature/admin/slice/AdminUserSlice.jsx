@@ -1,81 +1,69 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getAllUsers } from "../service/AdminService";
-import { updateUserStatus } from "../service/AdminService";
+import { getAllUsers, updateUserStatus } from "../service/AdminService";
 
-// 1. THUNK
 export const fetchAllUsers = createAsyncThunk(
   "adminUsers/fetchAllUsers",
-  async (_, { rejectWithValue }) => {
+  async ({ page = 0, size = 10 }, { rejectWithValue }) => {
     try {
-      const response = await getAllUsers();
+      const response = await getAllUsers(page, size);
+      // console.log(response.data)
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data || "Failed to fetch users");
+      return rejectWithValue(error.response?.data || "Failed");
     }
-  },
+  }
 );
 
-// update user status
 export const changeUserStatus = createAsyncThunk(
   "admin/changeUserStatus",
   async ({ userId, status }, { rejectWithValue }) => {
     try {
       await updateUserStatus(userId, status);
-      return { userId, status }; // return for UI update
+      return { userId, status };
     } catch (error) {
-      return rejectWithValue(error.response?.data || "Failed to update status");
+      return rejectWithValue(error.response?.data);
     }
-  },
+  }
 );
 
-// 2. SLICE
 const adminUserSlice = createSlice({
   name: "adminUsers",
   initialState: {
     users: [],
     loading: false,
-    error: null,
+    totalPages: 0,
+    currentPage: 0,
   },
 
-  reducers: {
-    clearUsersState: (state) => {
-      state.users = [];
-      state.error = null;
-      state.loading = false;
-    },
-  },
+  reducers: {},
 
   extraReducers: (builder) => {
     builder
-      // pending
+
       .addCase(fetchAllUsers.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
 
-      // success
       .addCase(fetchAllUsers.fulfilled, (state, action) => {
+        console.log(action)
         state.loading = false;
-        state.users = action.payload;
+        state.users = action.payload.content;
+        state.totalPages = action.payload.totalPages;
+        state.currentPage = action.payload.number;
       })
 
-      // error
-      .addCase(fetchAllUsers.rejected, (state, action) => {
+      .addCase(fetchAllUsers.rejected, (state) => {
         state.loading = false;
-        state.error = action.payload;
       })
 
       .addCase(changeUserStatus.fulfilled, (state, action) => {
-        const { userId, status } = action.payload;
+        const user = state.users.find(
+          (u) => u.userId === action.payload.userId
+        );
 
-        const user = state.users.find((u) => u.userId === userId);
-        if (user) {
-          user.status = status;
-        }
+        if (user) user.status = action.payload.status;
       });
   },
 });
-
-export const { clearUsersState } = adminUserSlice.actions;
 
 export default adminUserSlice.reducer;
