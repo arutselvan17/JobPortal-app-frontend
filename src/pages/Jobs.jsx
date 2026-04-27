@@ -3,7 +3,7 @@ import Navbar from "../component/Navbar";
 import JobCard from "../component/Jobcard";
 import FilterSidebar from "../component/FilterSidebar";
 import { getJobs } from "../service/JobService";
-import "./Job.css";
+import "../styles/Job.css";
 import ToastMsg from "../component/Toast";
 import Footer from "../component/Footer";
 import { useSelector } from "react-redux";
@@ -47,7 +47,6 @@ export default function Jobs() {
       });
   }, []);
 
-  // Reset page when filter/search changes
   useEffect(() => {
     setCurrentPage(1);
   }, [filters, search]);
@@ -63,7 +62,7 @@ export default function Jobs() {
     }
   };
 
-  // Filtering
+
   const filteredJobs = useMemo(() => {
     return jobs.filter((job) => {
       const now = new Date();
@@ -116,7 +115,7 @@ export default function Jobs() {
     });
   }, [jobs, filters, search]);
 
-  // Pagination logic
+  
   const indexOfLastJob = currentPage * jobsPerPage;
   const indexOfFirstJob = indexOfLastJob - jobsPerPage;
   const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
@@ -133,7 +132,7 @@ export default function Jobs() {
         onClose={() => setShowToast(false)}
       />
 
-      {/* HEADER */}
+     
       <div className="jobs-page-header">
         <div className="jobs-header-content">
           <h1>Find Your Dream Job</h1>
@@ -198,7 +197,7 @@ export default function Jobs() {
             <>
               <div className="jobs-grid">
                 {currentJobs.map((job) => (
-                  <JobCard key={job.jobId} job={job} onApply={onApply(job.jobId)} />
+                  <JobCard key={job.jobId} job={job} onApply={() => onApply(job.jobId)} />
                 ))}
               </div>
 

@@ -3,7 +3,7 @@
 
 /* ===== PAGE HEADER (HERO) ===== */
 .jobs-page-header {
-    background: linear-gradient(135deg, rgb(5,12,82) 0%, rgb(14,30,120) 100%);
+    background: linear-gradient(135deg, #050c52 0%, rgb(14,30,120) 100%);
     padding: 50px 8% 54px;
     text-align: center;
 }

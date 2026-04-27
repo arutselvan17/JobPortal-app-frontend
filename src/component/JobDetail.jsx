@@ -22,7 +22,7 @@ import {
   HouseFill,
 } from "react-bootstrap-icons";
 
-import "./JobDetail.css";
+import "./styles//JobDetail.css";
 import Navbar from "./Navbar";
 import ToastMsg from "./Toast";
 import { useDispatch, useSelector } from "react-redux";

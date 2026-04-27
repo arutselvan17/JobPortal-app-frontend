@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../component/Navbar";
 import Hero from "../assets/Hero.jpg";
 import { Link } from "react-router-dom";
-import "./Index.css";
+import "../styles/Index.css";
 import CustomerReview from "../component/CustomerReview";
 import { getJobs } from "../service/JobService";
 import JobCard from "../component/Jobcard";

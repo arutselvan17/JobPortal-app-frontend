@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import "./AsideAdminMenu.css";
+import "../styles/AsideAdminMenu.css";
 import ConfirmModal from "../../../component/ConfirmModal";
 
 export default function AsideAdminMenu(props) {

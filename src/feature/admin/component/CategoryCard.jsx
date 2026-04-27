@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./CategoryCard.css";
+import "../styles/CategoryCard.css";
 
 
 export default function CategoryCard({ category, onUpdate, onDelete }) {

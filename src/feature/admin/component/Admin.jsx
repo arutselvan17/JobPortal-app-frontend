@@ -4,7 +4,7 @@ import { logout } from "../../auth/slice/AuthSlice";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../component/Navbar";
 import AsideAdminMenu from "./AsideAdminMenu";
-import "./Admin.css";
+import "../styles/Admin.css";
 import { Outlet } from "react-router-dom";
 import AdminFooter from "./AdminFooter";
 

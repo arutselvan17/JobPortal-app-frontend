@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Navbar.css";
+import "./styles//Navbar.css";
 import logo from "../assets/Joblogo.jpeg";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";

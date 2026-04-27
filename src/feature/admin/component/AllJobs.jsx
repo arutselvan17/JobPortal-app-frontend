@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllJobs } from "../slice/AdminJobSlice";
-import "./AllJob.css";
+import "../styles/AllJob.css";
 
 export default function AllJobs() {
   const dispatch = useDispatch();

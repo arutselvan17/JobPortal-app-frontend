@@ -201,7 +201,7 @@ export default function Applications() {
                       <button
                         className="btn-update"
                         onClick={() => openUpdateModal(app)}
-                        disabled={app.status?.toUpperCase() === "REJECTED"}
+                        disabled={app.status?.toUpperCase() === "REJECTED" || app.status?.toUpperCase() === "HIRED"}
                         title="Update status"
                       >
                         Update
@@ -322,7 +322,7 @@ export default function Applications() {
                   rel="noreferrer"
                   className="btn-resume"
                 >
-                  📄 View Resume
+                  View Resume
                 </a>
               ) : (
                 <p className="empty-msg">No resume uploaded</p>

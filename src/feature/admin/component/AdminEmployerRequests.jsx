@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEmployerRequests } from "../slice/AdminEmployerRequestSlice";
 import {approveEmployerRequest} from "../slice/AdminEmployerRequestSlice"
-import './AdminEmployerRequests.css'
+import '../styles/AdminEmployerRequests.css'
 
 export default function AdminEmployerRequests() {
   const dispatch = useDispatch();

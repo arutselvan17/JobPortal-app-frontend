@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCompany } from "../slice/AdminCompnaySlice";
-import "./PostCompany.css";
+import "../styles/PostCompany.css";
 
 const emptyForm = {
   companyName: "",

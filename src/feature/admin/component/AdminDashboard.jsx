@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./AdminDashboard.css";
+import "../styles/AdminDashboard.css";
 import { fetchAdminStats } from "../slice/AdminStatusSlice";
 import {
   PieChart,

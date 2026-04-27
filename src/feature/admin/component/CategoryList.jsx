@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories, deleteCategoryById } from "../slice/CategorySlice";
 import CategoryCard from "./CategoryCard";
 import AddCategory from "./AddCategory";
-import "./CategoryList.css";
+import "../styles/CategoryList.css";
 import { updateCategoryById } from "../slice/CategorySlice";
 
 export default function CategoryList() {

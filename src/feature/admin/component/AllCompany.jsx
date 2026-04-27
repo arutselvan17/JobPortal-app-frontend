@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCompany } from "../slice/AdminCompnaySlice";
 import PostCompany from "./PostCompany";
-import "./AllCompany.css";
+import "../styles/AllCompany.css";
 
 export default function AllCompany() {
   const dispatch = useDispatch();

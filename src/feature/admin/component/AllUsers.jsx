@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllUsers, changeUserStatus } from "../slice/AdminUserSlice";
-import "./AllUsers.css";
+import "../styles/AllUsers.css";
 
 export default function AllUsers() {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createCategory, fetchCategories } from "../slice/CategorySlice";
-import "./AddCategory.css";
+import "../styles/AddCategory.css";
 
 export default function AddCategory() {
   const [name, setName] = useState("");

@@ -1,5 +1,5 @@
 import React from "react";
-import "./AdminFooter.css";
+import "../styles/AdminFooter.css";
 
 export default function AdminFooter() {
   return (

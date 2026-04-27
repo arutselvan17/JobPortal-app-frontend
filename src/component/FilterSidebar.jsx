@@ -1,6 +1,6 @@
 import React from "react";
 import { FunnelFill, XCircleFill } from "react-bootstrap-icons";
-import "./FilterSidebar.css";
+import "./styles//FilterSidebar.css";
 
 export default function FilterSidebar({ filters, setFilters }) {
   const handleChange = (e) => {

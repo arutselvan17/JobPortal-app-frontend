@@ -24,6 +24,7 @@ import EmployeeSearchJob from "./feature/Employee/Component/EmployeeSearchJob.js
 import EmployeeJobDetailPage from "./feature/Employee/Component/EmployeeJobDetailPage.jsx";
 import SavedJobs from "./feature/jobs/component/SavedJob.jsx";
 import MyApplications from "./feature/application/component/MyApplication.jsx";
+import ForgotPassword from "./feature/auth/component/ForgotPassword.jsx";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register/>}/>
         <Route path="/jobs/:jobId" element={<JobDetailPage />} />
+        <Route path="/forgot-password" element={<ForgotPassword/>}></Route>
 
         <Route
           path="/admin"

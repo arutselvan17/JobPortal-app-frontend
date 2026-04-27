@@ -11,7 +11,7 @@ import {
   CurrencyRupee,
   Mortarboard,
 } from "react-bootstrap-icons";
-import "./JobCard.css";
+import "./styles//JobCard.css";
 import { useDispatch, useSelector } from "react-redux";
 import { saveJob } from "../feature/jobs/slice/EmployeeJobSlice";
 import ToastMsg from "./Toast";

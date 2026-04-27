@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllApplications } from "../slice/AdminAllApplicationSlice";
-import "./AllApplications.css";
+import "../styles/AllApplications.css";
 
 export default function AllApplications() {
   const dispatch = useDispatch();
