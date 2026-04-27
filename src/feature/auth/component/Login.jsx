@@ -33,6 +33,10 @@ export default function Login() {
     );
   };
 
+  const handleForgotPassword = () =>{
+    navigate("/forgot-password")
+  }
+
   useEffect(() => {
     if (isAuthenticated) {
       setEmail("");
@@ -104,7 +108,7 @@ export default function Login() {
 
                 {/* Buttons */}
                 <div className="login-action-row">
-                  <button type="button" className="login-forgot-btn">
+                  <button type="button" className="login-forgot-btn" onClick={() => handleForgotPassword()}>
                     forgot password?
                   </button>
 
