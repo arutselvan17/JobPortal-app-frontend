@@ -62,6 +62,21 @@ export default function Jobs() {
     }
   };
 
+  const handleReset = () =>{
+     setFilters({
+                    location: "",
+                    category: "",
+                    jobType: "",
+                    workMode: "",
+                    experience: "",
+                    minSalary: "",
+                    maxSalary: "",
+                    company: "",
+                    datePosted: "",
+                  })
+                  setSearch("")
+  }
+
 
   const filteredJobs = useMemo(() => {
     return jobs.filter((job) => {
@@ -171,19 +186,7 @@ export default function Jobs() {
             {Object.values(filters).some(Boolean) && (
               <button
                 className="jobs-clear-btn"
-                onClick={() =>
-                  setFilters({
-                    location: "",
-                    category: "",
-                    jobType: "",
-                    workMode: "",
-                    experience: "",
-                    minSalary: "",
-                    maxSalary: "",
-                    company: "",
-                    datePosted: "",
-                  })
-                }
+                onClick={() =>handleReset()}
               >
                 Clear filters
               </button>
@@ -239,19 +242,7 @@ export default function Jobs() {
               <p>No jobs match your filters.</p>
               <button
                 className="jobs-clear-btn"
-                onClick={() =>
-                  setFilters({
-                    location: "",
-                    category: "",
-                    jobType: "",
-                    workMode: "",
-                    experience: "",
-                    minSalary: "",
-                    maxSalary: "",
-                    company: "",
-                    datePosted: "",
-                  })
-                }
+                onClick={() => handleReset()}
               >
                 Clear all filters
               </button>

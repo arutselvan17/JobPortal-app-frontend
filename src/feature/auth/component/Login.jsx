@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Login.css";
+import "../Styles/Login.css";
 import bg from "../asset/Joblogo.jpeg";
 import Navbar from "../../../component/Navbar";
 import Footer from "../../../component/Footer";
