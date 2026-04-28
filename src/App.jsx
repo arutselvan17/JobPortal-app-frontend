@@ -7,11 +7,12 @@ import Login from "./feature/auth/component/Login";
 import JobDetailPage from "./component/JobDetail";
 import Admin from "./feature/admin/component/Admin";
 import ProtectedRoute from "./feature/auth/component/ProtectedRoute";
+import PublicRoute from "./feature/auth/component/PublicRoute.jsx";
 import AdminDashboard from "./feature/admin/component/AdminDashboard";
 import AllUsers from "./feature/admin/component/AllUsers";
 import AllCompany from "./feature/admin/component/AllCompany";
 import CategoryList from "./feature/admin/component/CategoryList";
-import AllJobs from "./feature/admin/component/AllJobs.jsx"
+import AllJobs from "./feature/admin/component/AllJobs.jsx";
 import AllApplications from "./feature/admin/component/AllApplications.jsx";
 import AdminEmployerRequests from "./feature/admin/component/AdminEmployerRequests.jsx";
 import Employee from "./pages/Employee.jsx";
@@ -25,20 +26,38 @@ import EmployeeJobDetailPage from "./feature/Employee/Component/EmployeeJobDetai
 import SavedJobs from "./feature/jobs/component/SavedJob.jsx";
 import MyApplications from "./feature/application/component/MyApplication.jsx";
 import ForgotPassword from "./feature/auth/component/ForgotPassword.jsx";
+import PageNotFound from "./pages/PageNotFound.jsx";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Index />} />
+        <Route path="*" element={<PageNotFound />} />
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <Index />
+            </PublicRoute>
+          }
+        />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactUs />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register/>}/>
         <Route path="/jobs/:jobId" element={<JobDetailPage />} />
-        <Route path="/forgot-password" element={<ForgotPassword/>}></Route>
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
+
+        {/* ── Admin ── */}
         <Route
           path="/admin"
           element={
@@ -56,33 +75,33 @@ function App() {
           <Route path="employer-requests" element={<AdminEmployerRequests />} />
         </Route>
 
-        <Route 
+        {/* ── Employee ── */}
+        <Route
           path="/employee"
           element={
             <ProtectedRoute role="EMPLOYEE">
-              <Employee/>
+              <Employee />
             </ProtectedRoute>
           }
         >
-          <Route path="jobs" element={<EmployeeSearchJob/>}></Route>
-          <Route path="saved-jobs" element={<SavedJobs/>}></Route>
-          <Route path="jobs/:jobId" element={<EmployeeJobDetailPage/>} />
-          <Route path="my-applications" element={<MyApplications/>}></Route>
-
+          <Route path="jobs" element={<EmployeeSearchJob />} />
+          <Route path="saved-jobs" element={<SavedJobs />} />
+          <Route path="jobs/:jobId" element={<EmployeeJobDetailPage />} />
+          <Route path="my-applications" element={<MyApplications />} />
         </Route>
 
-        <Route 
+        {/* ── Employer ── */}
+        <Route
           path="/employer"
           element={
             <ProtectedRoute role="EMPLOYER">
-              <Employer/>
+              <Employer />
             </ProtectedRoute>
           }
         >
-        
-        <Route path="my-jobs" element={<MyJobs/>}></Route>
-        <Route path="post-job" element={<PostJob/>}></Route>
-        <Route path="applications" element={<Applications/>}></Route>
+          <Route path="my-jobs" element={<MyJobs />} />
+          <Route path="post-job" element={<PostJob />} />
+          <Route path="applications" element={<Applications />} />
         </Route>
       </Routes>
     </>
