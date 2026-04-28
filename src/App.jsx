@@ -27,6 +27,7 @@ import SavedJobs from "./feature/jobs/component/SavedJob.jsx";
 import MyApplications from "./feature/application/component/MyApplication.jsx";
 import ForgotPassword from "./feature/auth/component/ForgotPassword.jsx";
 import PageNotFound from "./pages/PageNotFound.jsx";
+import Announcement from "./feature/admin/component/SendAnnounceMent.jsx";
 
 function App() {
   return (
@@ -73,6 +74,7 @@ function App() {
           <Route path="jobs" element={<AllJobs />} />
           <Route path="application" element={<AllApplications />} />
           <Route path="employer-requests" element={<AdminEmployerRequests />} />
+           <Route path="announcement" element={<Announcement/>} />
         </Route>
 
         {/* ── Employee ── */}
@@ -102,6 +104,7 @@ function App() {
           <Route path="my-jobs" element={<MyJobs />} />
           <Route path="post-job" element={<PostJob />} />
           <Route path="applications" element={<Applications />} />
+         
         </Route>
       </Routes>
     </>

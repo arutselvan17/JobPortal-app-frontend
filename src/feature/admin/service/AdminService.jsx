@@ -47,5 +47,9 @@ export const getAllEmployerRequests = () => {
 };
 
 export const approveEmployer = (id) => {
-  return axiosInstance.patch(`/admin/request/${employerId}`);
+  return axiosInstance.patch(`/admin/request/${id}`);
 };
+
+export const sendAnnoucement = (userType,announcementData) => {
+  return axiosInstance.post(`/admin/announcement/${userType}`,announcementData)
+}
