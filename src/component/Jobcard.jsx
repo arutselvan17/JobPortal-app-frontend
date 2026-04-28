@@ -73,9 +73,9 @@ export default function JobCard({ job, onApply }) {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  // const [toastMessage, setToastMessage] = useState("");
-  // const [toastModel, setToastModel] = useState(false);
-  // const [toastType, setToastType] = useState("Success");
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastModel, setToastModel] = useState(false);
+  const [toastType, setToastType] = useState("Success");
 
   const handleSave = async (jobId) => {
     if (!isAuthenticated) {

@@ -12,21 +12,7 @@
   font-weight: 600;
 }
 
-/* 🔍 SEARCH INPUT */
-.search-input {
-  padding: 8px 10px;
-  margin-bottom: 15px;
-  width: 250px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
 
-.search-input:focus {
-  outline: none;
-  border-color: #0a1853;
-  box-shadow: 0 0 0 2px rgba(10, 24, 83, 0.1);
-}
 
 /* FLEX GRID (NO STRETCH) */
 .category-grid {
@@ -38,7 +24,7 @@
 
 /* CARD */
 .category-card {
-  flex: 0 0 200px; /* 🔥 prevents stretch */
+  flex: 0 0 200px; 
   max-width: 200px;
 
   background: #ffffff;

@@ -39,11 +39,11 @@ export const getAllJob = () =>{
 }
 
 export const getAllApplications = () => {
-  return axiosInstance.get("/admin/applications");
+  return axiosInstance.get("/admin/job-applications");
 };
 
 export const getAllEmployerRequests = () => {
-  return axiosInstance.get("/admin/request");
+  return axiosInstance.get("/admin/employer-request");
 };
 
 export const approveEmployer = (id) => {

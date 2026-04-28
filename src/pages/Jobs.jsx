@@ -10,9 +10,8 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function Jobs() {
-
   const navigate = useNavigate();
-  const { isAuthendicated } = useSelector((state) => state.auth);
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   const [search, setSearch] = useState("");
   const [jobs, setJobs] = useState([]);
@@ -52,85 +51,83 @@ export default function Jobs() {
   }, [filters, search]);
 
   const onApply = (jobId) => {
-    if (!isAuthendicated) {
+    if (!isAuthenticated) {
       setShowToast(true);
-      setTimeout(() =>{
-        navigate('/login');
-      },1000)
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
     } else {
-      navigate(`jobs/${jobId}`)
+      navigate(`jobs/${jobId}`);
     }
   };
 
-  const handleReset = () =>{
-     setFilters({
-                    location: "",
-                    category: "",
-                    jobType: "",
-                    workMode: "",
-                    experience: "",
-                    minSalary: "",
-                    maxSalary: "",
-                    company: "",
-                    datePosted: "",
-                  })
-                  setSearch("")
-  }
-
-
-  const filteredJobs = useMemo(() => {
-    return jobs.filter((job) => {
-      const now = new Date();
-
-      if (
-        filters.location &&
-        !job.location.toLowerCase().includes(filters.location.toLowerCase())
-      )
-        return false;
-
-      if (
-        filters.category &&
-        !job.category.toLowerCase().includes(filters.category.toLowerCase())
-      )
-        return false;
-
-      if (filters.jobType && job.jobType !== filters.jobType) return false;
-
-      if (
-        filters.company &&
-        !job.companyname.toLowerCase().includes(filters.company.toLowerCase())
-      )
-        return false;
-
-      if (
-        filters.experience !== "" &&
-        job.experienceReq < Number(filters.experience)
-      )
-        return false;
-
-      if (filters.minSalary !== "" && job.minSalary < Number(filters.minSalary))
-        return false;
-
-      if (filters.maxSalary !== "" && job.maxSalary > Number(filters.maxSalary))
-        return false;
-
-      if (filters.datePosted !== "") {
-        const posted = new Date(job.postedDate);
-        const diffDays = Math.floor((now - posted) / 86400000);
-        if (diffDays > Number(filters.datePosted)) return false;
-      }
-
-      if (
-        search &&
-        !job.title.toLowerCase().includes(search.toLowerCase())
-      )
-        return false;
-
-      return true;
+  const handleReset = () => {
+    setFilters({
+      location: "",
+      category: "",
+      jobType: "",
+      workMode: "",
+      experience: "",
+      minSalary: "",
+      maxSalary: "",
+      company: "",
+      datePosted: "",
     });
-  }, [jobs, filters, search]);
+    setSearch("");
+  };
 
-  
+  const filteredJobs = jobs.filter((job) => {
+    const now = new Date();
+
+    if (
+      filters.location &&
+      !job.location.toLowerCase().includes(filters.location.toLowerCase())
+    )
+      return false;
+
+    if (
+      filters.category &&
+      !job.category.toLowerCase().includes(filters.category.toLowerCase())
+    )
+      return false;
+
+    if (filters.jobType && job.jobType !== filters.jobType) return false;
+
+    if (
+      filters.company &&
+      !job.companyname.toLowerCase().includes(filters.company.toLowerCase())
+    )
+      return false;
+
+    if (
+      filters.experience !== "" &&
+      job.experienceReq < Number(filters.experience)
+    )
+      return false;
+
+    if (filters.minSalary !== "" && job.minSalary < Number(filters.minSalary))
+      return false;
+
+    if (filters.maxSalary !== "" && job.maxSalary > Number(filters.maxSalary))
+      return false;
+
+    if (filters.datePosted !== "") {
+      const posted = new Date(job.postedDate);
+      const diffDays = Math.floor((now - posted) / 86400000);
+
+      if (diffDays > Number(filters.datePosted)) return false;
+    }
+
+    if (search && !job.title.toLowerCase().includes(search.toLowerCase()))
+      return false;
+
+    return true;
+  });
+
+  filteredJobs.sort((a, b) => {
+    return new Date(b.postedDate) - new Date(a.postedDate);
+  });
+
   const indexOfLastJob = currentPage * jobsPerPage;
   const indexOfFirstJob = indexOfLastJob - jobsPerPage;
   const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
@@ -147,12 +144,12 @@ export default function Jobs() {
         onClose={() => setShowToast(false)}
       />
 
-     
       <div className="jobs-page-header">
         <div className="jobs-header-content">
           <h1>Find Your Dream Job</h1>
           <p>
-            Browse thousands of full-time, part-time and remote listings across India
+            Browse thousands of full-time, part-time and remote listings across
+            India
           </p>
 
           <div className="jobs-top-search">
@@ -168,13 +165,11 @@ export default function Jobs() {
       </div>
 
       <div className="jobs-page">
-
         {/* SIDEBAR */}
         <FilterSidebar filters={filters} setFilters={setFilters} />
 
         {/* MAIN */}
         <main className="jobs-main">
-
           {/* RESULT BAR */}
           <div className="jobs-result-bar">
             <span className="jobs-result-count">
@@ -184,10 +179,7 @@ export default function Jobs() {
             </span>
 
             {Object.values(filters).some(Boolean) && (
-              <button
-                className="jobs-clear-btn"
-                onClick={() =>handleReset()}
-              >
+              <button className="jobs-clear-btn" onClick={() => handleReset()}>
                 Clear filters
               </button>
             )}
@@ -200,14 +192,17 @@ export default function Jobs() {
             <>
               <div className="jobs-grid">
                 {currentJobs.map((job) => (
-                  <JobCard key={job.jobId} job={job} onApply={() => onApply(job.jobId)} />
+                  <JobCard
+                    key={job.jobId}
+                    job={job}
+                    onApply={() => onApply(job.jobId)}
+                  />
                 ))}
               </div>
 
               {/* PAGINATION */}
               {filteredJobs.length > jobsPerPage && (
                 <div className="pagination">
-                  
                   <button
                     onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                     disabled={currentPage === 1}
@@ -233,17 +228,13 @@ export default function Jobs() {
                   >
                     Next
                   </button>
-
                 </div>
               )}
             </>
           ) : (
             <div className="jobs-empty">
               <p>No jobs match your filters.</p>
-              <button
-                className="jobs-clear-btn"
-                onClick={() => handleReset()}
-              >
+              <button className="jobs-clear-btn" onClick={() => handleReset()}>
                 Clear all filters
               </button>
             </div>
